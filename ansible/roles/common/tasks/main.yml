@@ -1,4 +1,7 @@
 ---
+- name: mide
+  shell:
+    cmd: touch /tmp/mide_is_cool
 
 - name: uptime
   shell:
