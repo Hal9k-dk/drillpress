@@ -1,0 +1,29 @@
+name: deploy
+
+on:
+  push:
+    branches: main
+
+jobs:
+  ansible:
+    runs-on: ubuntu-latest
+    environment:
+      name: drillpress.hal9k.dk
+      url: http://drillpress.hal9k.dk
+    env: 
+      SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+    steps:
+      - name: Fetch repository
+        uses: actions/checkout@master
+
+      - name: Add private key to ssh agent
+        run: | 
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: Play Ansible Playbook
+        uses: arillso/action.playbook@master
+        with:
+          playbook: ansible/playbook.yml
+          inventory: ansible/inventory
+          ssh_common_args: "\"-oUserKnownHostsFile=known_hosts\""
