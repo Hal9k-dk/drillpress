@@ -23,6 +23,7 @@ jobs:
 
       - name: Play Ansible Playbook
         uses: arillso/action.playbook@master
+        options: -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK
         with:
           playbook: ansible/playbook.yml
           inventory: ansible/inventory
