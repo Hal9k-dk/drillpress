@@ -5,3 +5,9 @@
 
   roles:
     - { name: common, tags: common }
+
+- name: Install docker
+  hosts: all
+  roles:
+    - geerlingguy.docker
+
