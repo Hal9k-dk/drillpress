@@ -1,0 +1,15 @@
+---
+- name: Remove PasswordAuthentication yes if pressent
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    line: PasswordAuthentication yes
+    state: absent
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd
+- name: Ensure PasswordAuthentication no
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    line: PasswordAuthentication no
+    state: present
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd

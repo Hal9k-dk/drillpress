@@ -1,12 +1,15 @@
 ---
 - name: Common tasks for all nodes
   hosts: all
-
   roles:
     - common
 
-- name: Install docker
+- name: Setup sshd
   hosts: all
   roles:
-    - geerlingguy.docker
+    - sshd
 
+#- name: Install docker
+#  hosts: servers
+#  roles:
+#    - geerlingguy.docker
