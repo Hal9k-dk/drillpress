@@ -16,13 +16,11 @@
   community.general.docker_container:
     name: wordpress
     image: "wordpress:latest"
-    ports:
-      - "8000:80"
     restart_policy: always
     links:
       - db
     env:
-      WORDPRESS_DB_HOST: "db:{{ mysql.port }}"
+      WORDPRESS_DB_HOST: "db:3306"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
       WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
