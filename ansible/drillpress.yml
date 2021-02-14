@@ -26,6 +26,12 @@
   roles:
     - dokuwiki
 
+- name: Setup Watchtower
+  hosts: drillpress.hal9k.dk
+  tags: watchtower
+  roles:
+    - watchtower
+
 - name: Setup firewall
   hosts: drillpress.hal9k.dk
   tags: iptables

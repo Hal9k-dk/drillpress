@@ -1,0 +1,8 @@
+---
+- name: Watchtower
+  community.general.docker_container:
+    name: watchtower
+    image: containrrr/watchtower
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    restart_policy: always
