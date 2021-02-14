@@ -10,6 +10,7 @@
 
 - name: Setup nginx docker proxy with SSL
   hosts: drillpress.hal9k.dk
+  tags: nginx_proxy
   roles:
     - nginx_proxy
 
@@ -17,6 +18,7 @@
   hosts: drillpress.hal9k.dk
   vars:
     hostname: www2.hal9k.dk
+  tags: wordpress
   roles:
     - wordpress
 
@@ -24,11 +26,12 @@
   hosts: drillpress.hal9k.dk
   vars:
     hostname: wiki2.hal9k.dk
+  tags: dokuwiki
   roles:
     - dokuwiki
 
-
 - name: Setup firewall
   hosts: drillpress.hal9k.dk
+  tags: iptables
   roles:
     - iptables

@@ -1,11 +1,13 @@
 ---
 - name: Common tasks for all nodes
   hosts: all
+  tags: common
   roles:
     - common
 
 - name: Setup sshd
   hosts: all
+  tags: sshd
   roles:
     - sshd
 
