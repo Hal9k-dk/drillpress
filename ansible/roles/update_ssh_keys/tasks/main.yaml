@@ -1,0 +1,16 @@
+- name: Put github actions key
+  ansible.builtin.copy:
+    src: github_actions.keys
+    dest: /root/sshkeys/
+
+- name: Fetch ssh keys
+  get_url:
+    url: https://github.com/{{ item }}.keys
+    dest: /root/sshkeys/
+  loop: "{{ users }}"
+
+- name: Generate .authorized_keys
+  ansible.builtin.assemble:
+    src: /root/sshkeys
+    dest: /root/authorized_keys
+    mode: "600"

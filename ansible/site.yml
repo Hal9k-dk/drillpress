@@ -11,4 +11,14 @@
   roles:
     - sshd
 
+- name: Update ssh access from github
+  hosts: all
+  vars:
+    users:
+      - fasmide
+      - jbro
+  tags: update_ssh_keys
+  roles:
+    - update_ssh_keys
+
 - import_playbook: drillpress.yml
