@@ -4,7 +4,7 @@
     name: wordpress-db
     image: "mysql:8"
     volumes:
-      - "/srv/mysql:/var/lib/mysql"
+      - "/srv/wordpress/mysql:/var/lib/mysql"
     restart_policy: always
     env:
        MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
@@ -17,7 +17,7 @@
     name: wordpress
     image: "wordpress:latest"
     volumes:
-      - "/srv/wordpress:/var/www/html"
+      - "/srv/wordpress/www:/var/www/html"
     restart_policy: always
     links:
       - wordpress-db
