@@ -15,3 +15,5 @@ ssh:
   users:
     - fasmide
     - jbro
+watchtower:
+  slack_hook_url: "{{ vault.watchtower.slack_hook_url }}"
