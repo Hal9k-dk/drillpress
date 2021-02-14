@@ -19,7 +19,7 @@ jobs:
       - name: Play Ansible Playbook
         uses: arillso/action.playbook@master
         with:
-          playbook: ansible/playbook.yml
+          playbook: ansible/site.yml
           inventory: ansible/hosts
           galaxy_file: ansible/requirements.yml
           ssh_common_args: "\"-oUserKnownHostsFile=known_hosts\""
