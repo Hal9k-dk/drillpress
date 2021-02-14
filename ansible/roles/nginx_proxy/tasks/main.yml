@@ -12,6 +12,8 @@
       - "80:80"
       - "443:443"
     restart_policy: always
+    env:
+      ENABLE_IPV6: "true"
 
 - name:
   community.general.docker_container:

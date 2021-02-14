@@ -1,0 +1,19 @@
+---
+- name: Enable v6 in docker
+  ansible.builtin.lineinfile:
+    path: /etc/docker/daemon.json
+    create: "true"
+    line: "{ \"ipv6\": true, \"fixed-cidr-v6\": \"fd00::/48\" }"
+  notify: restart docker
+
+- name:
+  community.general.docker_container:
+    name: ipv6nat
+    image: robbertkl/ipv6nat
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/lib/modules:/lib/modules:ro"
+    restart_policy: always
+    privileged: yes
+    network_mode: host
+

@@ -8,6 +8,12 @@
     - geerlingguy.docker
     - geerlingguy.pip
 
+- name: Setup v6 NAT for docker
+  hosts: drillpress.hal9k.dk
+  tags: docker_ipv6
+  roles:
+    - docker_ipv6
+
 - name: Setup nginx docker proxy with SSL
   hosts: drillpress.hal9k.dk
   tags: nginx_proxy
