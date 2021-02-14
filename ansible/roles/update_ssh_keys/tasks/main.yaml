@@ -7,7 +7,7 @@
   get_url:
     url: https://github.com/{{ item }}.keys
     dest: /root/sshkeys/
-  loop: "{{ users }}"
+  loop: "{{ ssh.users }}"
 
 - name: Generate .authorized_keys
   ansible.builtin.assemble:

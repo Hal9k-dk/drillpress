@@ -4,7 +4,14 @@ wordpress:
     name: wordpress
     user: wordpress
     pass: "{{ vault.wordpress.dbpass }}"
+  hostname: www2.hal9k.dk
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acme:
   email: "{{ vault.acme.email }}"
+dokuwiki:
+  hostname: wiki2.hal9k.dk
+ssh:
+  users:
+    - fasmide
+    - jbro

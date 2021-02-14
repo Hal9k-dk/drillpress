@@ -16,16 +16,12 @@
 
 - name: Setup WordPress
   hosts: drillpress.hal9k.dk
-  vars:
-    hostname: www2.hal9k.dk
   tags: wordpress
   roles:
     - wordpress
 
 - name: Seup Dokuwiki
   hosts: drillpress.hal9k.dk
-  vars:
-    hostname: wiki2.hal9k.dk
   tags: dokuwiki
   roles:
     - dokuwiki

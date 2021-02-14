@@ -21,12 +21,12 @@
       - wordpress-db
     expose: 80
     env:
-      VIRTUAL_HOST: "{{ hostname }}"
-      LETSENCRYPT_HOST: "{{ hostname }}"
+      VIRTUAL_HOST: "{{ wordpress.hostname }}"
+      LETSENCRYPT_HOST: "{{ wordpress.hostname }}"
       WORDPRESS_DB_HOST: "wordpress-db:3306"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
       WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
       WORDPRESS_CONFIG_EXTRA: |
-        define( 'WP_HOME', 'https://{{ hostname }}' );
-        define( 'WP_SITEURL', 'https://{{ hostname }}' );
+        define( 'WP_HOME', 'https://{{ wordpress.hostname }}' );
+        define( 'WP_SITEURL', 'https://{{ wordpress.hostname }}' );

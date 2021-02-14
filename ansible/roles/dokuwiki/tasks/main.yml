@@ -11,5 +11,5 @@
       PUID: "1000"
       PGID: "1000"
       TZ: Europe/Copenhagen
-      VIRTUAL_HOST: "{{ hostname }}"
-      LETSENCRYPT_HOST: "{{ hostname }}"
+      VIRTUAL_HOST: "{{ dokuwiki.hostname }}"
+      LETSENCRYPT_HOST: "{{ dokuwiki.hostname }}"
