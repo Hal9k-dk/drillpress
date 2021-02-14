@@ -16,6 +16,8 @@
   community.general.docker_container:
     name: wordpress
     image: "wordpress:latest"
+    volumes:
+      - "/srv/wordpress:/var/www/html"
     restart_policy: always
     links:
       - wordpress-db
