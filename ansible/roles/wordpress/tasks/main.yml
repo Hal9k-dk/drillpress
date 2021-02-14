@@ -19,6 +19,8 @@
     ports:
       - "8000:80"
     restart_policy: always
+    links:
+      - db
     env:
       WORDPRESS_DB_HOST: "db:{{ mysql.port }}"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
