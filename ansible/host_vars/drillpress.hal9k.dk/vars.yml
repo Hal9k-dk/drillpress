@@ -13,6 +13,7 @@ dokuwiki:
   hostname: wiki2.hal9k.dk
 ssh:
   users:
+    - bullestock
     - fasmide
     - jbro
 watchtower:
