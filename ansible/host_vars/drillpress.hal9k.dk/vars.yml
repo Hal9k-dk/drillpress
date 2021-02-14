@@ -6,3 +6,5 @@ wordpress:
     pass: "{{ vault.wordpress.dbpass }}"
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
+acme:
+  email: "{{ vault.acme.email }}"

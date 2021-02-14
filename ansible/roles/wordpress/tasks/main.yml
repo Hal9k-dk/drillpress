@@ -1,7 +1,7 @@
 ---
-- name: MySQL server
+- name: Wordpress MySQL server
   community.general.docker_container:
-    name: db
+    name: wordpress-db
     image: "mysql:8"
     volumes:
       - "/srv/mysql:/var/lib/mysql"
@@ -18,9 +18,15 @@
     image: "wordpress:latest"
     restart_policy: always
     links:
-      - db
+      - wordpress-db
+    expose: 80
     env:
-      WORDPRESS_DB_HOST: "db:3306"
+      VIRTUAL_HOST: www2.hal9k.dk
+      LETSENCRYPT_HOST: www2.hal9k.dk
+      WORDPRESS_DB_HOST: "wordpress-db:3306"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
       WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_HOME', 'https://www2.hal9k.dk' );
+        define( 'WP_SITEURL', 'https://www2.hal9k.dk' );

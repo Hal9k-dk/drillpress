@@ -10,6 +10,8 @@
 
 - name: Setup nginx docker proxy with SSL
   hosts: drillpress.hal9k.dk
+  roles:
+    - nginx_proxy
 
 - name: Setup WordPress
   hosts: drillpress.hal9k.dk
