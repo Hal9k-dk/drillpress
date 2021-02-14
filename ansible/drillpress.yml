@@ -1,0 +1,22 @@
+---
+- name: Install docker
+  hosts: drillpress.hal9k.dk
+  vars:
+    pip_install_packages:
+      - name: docker
+  roles:
+    - geerlingguy.docker
+    - geerlingguy.pip
+
+- name: Setup nginx docker proxy with SSL
+  hosts: drillpress.hal9k.dk
+
+- name: Setup WordPress
+  hosts: drillpress.hal9k.dk
+  roles:
+    - wordpress
+
+- name: Setup firewall
+  hosts: drillpress.hal9k.dk
+  roles:
+    - iptables
