@@ -12,5 +12,5 @@
 - name: Generate .authorized_keys
   ansible.builtin.assemble:
     src: /root/sshkeys
-    dest: /root/authorized_keys
+    dest: /root/.ssh/authorized_keys
     mode: "600"
