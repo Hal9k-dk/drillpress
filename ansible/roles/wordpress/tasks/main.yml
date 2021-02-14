@@ -7,10 +7,10 @@
       - "/srv/mysql:/var/lib/mysql"
     restart_policy: always
     env:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+       MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
+       MYSQL_DATABASE: "{{ wordpress.db.name }}"
+       MYSQL_USER: "{{ wordpress.db.user }}"
+       MYSQL_PASSWORD: "{{ wordpress.db.pass }}"
 
 - name: Wordpress
   community.general.docker_container:
@@ -20,7 +20,7 @@
       - "8000:80"
     restart_policy: always
     env:
-      WORDPRESS_DB_HOST: "db:3306"
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: "db:{{ mysql.port }}"
+      WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
+      WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
+      WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"

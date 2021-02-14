@@ -1,0 +1,9 @@
+---
+wordpress:
+  db:
+    name: wordpress
+    user: wordpress
+    pass: "{{ vault.wordpress.dbpass }}"
+mysql:
+  rootpass: "{{ vault.mysql.rootpass }}"
+  port: 3306
