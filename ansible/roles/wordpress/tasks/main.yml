@@ -1,0 +1,26 @@
+---
+- name: MySQL server
+  community.general.docker_container:
+    name: db
+    image: "mysql:8"
+    volumes:
+      - "/srv/mysql:/var/lib/mysql"
+    restart_policy: always
+    env:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+- name: Wordpress
+  community.general.docker_container:
+    name: wordpress
+    image: "wordpress:latest"
+    ports:
+      - "8000:80"
+    restart_policy: always
+    env:
+      WORDPRESS_DB_HOST: "db:3306"
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress

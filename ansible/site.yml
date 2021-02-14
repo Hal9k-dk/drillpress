@@ -9,7 +9,18 @@
   roles:
     - sshd
 
-#- name: Install docker
-#  hosts: servers
-#  roles:
-#    - geerlingguy.docker
+- name: Install docker
+  hosts: servers
+  vars:
+    pip_install_packages:
+      - name: docker
+  roles:
+    - geerlingguy.docker
+    - geerlingguy.pip
+
+- name: Setup WordPress
+  hosts: servers
+  tags: cur
+  roles:
+    - wordpress
+
