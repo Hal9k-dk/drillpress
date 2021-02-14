@@ -12,9 +12,10 @@
     insertafter: "-infra-security"
 
 - name: Enable automatic reboot at night
-  ansible.builtin.lineinfile:
+  ansible.builtin.blockinfile:
     path: /etc/apt/apt.conf.d/50unattended-upgrades
-    line: |
+    marker: "// {mark} ANSIBLE MANAGED BLOCK"
+    block: |
       Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
       Unattended-Upgrade::Remove-Unused-Dependencies "true";
       Unattended-Upgrade::Automatic-Reboot "true";
