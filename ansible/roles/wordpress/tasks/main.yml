@@ -21,12 +21,12 @@
       - wordpress-db
     expose: 80
     env:
-      VIRTUAL_HOST: www2.hal9k.dk
-      LETSENCRYPT_HOST: www2.hal9k.dk
+      VIRTUAL_HOST: "{{ hostname }}"
+      LETSENCRYPT_HOST: "{{ hostname }}"
       WORDPRESS_DB_HOST: "wordpress-db:3306"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
       WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
       WORDPRESS_CONFIG_EXTRA: |
-        define( 'WP_HOME', 'https://www2.hal9k.dk' );
-        define( 'WP_SITEURL', 'https://www2.hal9k.dk' );
+        define( 'WP_HOME', 'https://{{ hostname }}' );
+        define( 'WP_SITEURL', 'https://{{ hostname }}' );

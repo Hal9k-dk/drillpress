@@ -11,5 +11,5 @@
       PUID: "1000"
       PGID: "1000"
       TZ: Europe/Copenhagen
-      VIRTUAL_HOST: wiki2.hal9k.dk
-      LETSENCRYPT_HOST: wiki2.hal9k.dk
+      VIRTUAL_HOST: "{{ hostname }}"
+      LETSENCRYPT_HOST: "{{ hostname }}"
