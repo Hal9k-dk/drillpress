@@ -1,5 +1,5 @@
 ---
 - name: Install kitty terminfo
-  ansible.builtin.package:
+  apt:
     name: kitty-terminfo
-    state: latest
+    update_cache: yes
