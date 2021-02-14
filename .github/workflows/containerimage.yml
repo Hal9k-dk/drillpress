@@ -20,7 +20,7 @@ jobs:
         uses: arillso/action.playbook@master
         with:
           playbook: ansible/playbook.yml
-          inventory: ansible/inventory
+          inventory: ansible/hosts
           galaxy_file: ansible/requirements.yml
           ssh_common_args: "\"-oUserKnownHostsFile=known_hosts\""
           private_key: ${{ secrets.SSH_PRIVATE_KEY }}
