@@ -18,6 +18,12 @@
   roles:
     - wordpress
 
+- name: Seup Dokuwiki
+  hosts: drillpress.hal9k.dk
+  roles:
+    - dokuwiki
+
+
 - name: Setup firewall
   hosts: drillpress.hal9k.dk
   roles:

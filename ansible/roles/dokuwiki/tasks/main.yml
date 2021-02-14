@@ -1,0 +1,15 @@
+---
+- name: Dokuwiki
+  community.general.docker_container:
+    name: dokuwiki
+    image: ghcr.io/linuxserver/dokuwiki
+    volumes:
+      - "/srv/dokuwiki/config:/config"
+    restart_policy: always
+    expose: 80
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: Europe/Copenhagen
+      VIRTUAL_HOST: wiki2.hal9k.dk
+      LETSENCRYPT_HOST: wiki2.hal9k.dk
