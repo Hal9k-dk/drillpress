@@ -11,6 +11,12 @@
   roles:
     - sshd
 
+- name: Unattended upgrades and automatic rebooting
+  hosts: all
+  tags: unattended_upgrades
+  roles:
+    - unattended_upgrades
+
 - name: Update ssh access from github
   hosts: all
   tags: update_ssh_keys

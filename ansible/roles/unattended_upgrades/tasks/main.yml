@@ -1,0 +1,21 @@
+---
+- name: Upgrade all software do not just apply security update
+  ansible.builtin.lineinfile:
+    path: /etc/apt/apt.conf.d/50unattended-upgrades
+    line: "\t\"${distro_id}:${distro_codename}-updates\";"
+    insertafter: "-infra-security"
+
+- name: Upgrade docker-ce
+  ansible.builtin.lineinfile:
+    path: /etc/apt/apt.conf.d/50unattended-upgrades
+    line: "\t\"Docker:${distro_codename}\";"
+    insertafter: "-infra-security"
+
+- name: Enable automatic reboot at night
+  ansible.builtin.lineinfile:
+    path: /etc/apt/apt.conf.d/50unattended-upgrades
+    line: |
+      Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
+      Unattended-Upgrade::Remove-Unused-Dependencies "true";
+      Unattended-Upgrade::Automatic-Reboot "true";
+      Unattended-Upgrade::Automatic-Reboot-Time "03:00";
