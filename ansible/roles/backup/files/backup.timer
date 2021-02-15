@@ -1,0 +1,9 @@
+[Unit]
+Description=Run backup every night
+
+[Timer]
+Unit=backup.service
+OnCalendar=04:00
+
+[Install]
+WantedBy=timers.target

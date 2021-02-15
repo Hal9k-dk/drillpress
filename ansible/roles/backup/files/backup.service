@@ -1,0 +1,6 @@
+[Unit]
+Description=Backup services
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/backup
