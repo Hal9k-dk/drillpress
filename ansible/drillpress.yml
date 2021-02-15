@@ -8,11 +8,23 @@
     - geerlingguy.docker
     - geerlingguy.pip
 
+- name: Setup Watchtower
+  hosts: drillpress.hal9k.dk
+  tags: watchtower
+  roles:
+    - watchtower
+
 - name: Setup v6 NAT for docker
   hosts: drillpress.hal9k.dk
   tags: docker_ipv6
   roles:
     - docker_ipv6
+
+- name: Setup firewall
+  hosts: drillpress.hal9k.dk
+  tags: iptables
+  roles:
+    - iptables
 
 - name: Setup nginx docker proxy with SSL
   hosts: drillpress.hal9k.dk
@@ -32,14 +44,4 @@
   roles:
     - dokuwiki
 
-- name: Setup Watchtower
-  hosts: drillpress.hal9k.dk
-  tags: watchtower
-  roles:
-    - watchtower
 
-- name: Setup firewall
-  hosts: drillpress.hal9k.dk
-  tags: iptables
-  roles:
-    - iptables
