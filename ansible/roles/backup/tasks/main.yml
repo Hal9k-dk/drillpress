@@ -1,0 +1,12 @@
+---
+- name: Install restic
+  apt:
+    name: restic
+    update_cache: yes
+
+- name: Template backup script to /usr/local/lib
+  ansible.builtin.template:
+    src: backup.j2
+    dest: /usr/local/lib/backup
+    mode: '0700'
+

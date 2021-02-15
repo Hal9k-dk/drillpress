@@ -44,4 +44,9 @@
   roles:
     - dokuwiki
 
+- name: Backup
+  hosts: drillpress.hal9k.dk
+  tags: backup
+  roles:
+    - backup
 

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+##
+echo 'Backup started'
+
+dbdump="/srv/wordpress/db-dumps/$(date -u -Is)"
+mkdir -p "$(dirname "$dbdump")"
+
+##
+echo Dumping wordpress-db to: "$dbdump"
+docker container \
+  exec -e MYSQL_PWD='{{ mysql.rootpass }}' wordpress-db \
+  mysqldump -A > "$dbdump"
+
+##
+echo "Compressing $dbdump"
+bzip2 -9 "$dbdump"
+
+##
+echo 'Removing db dumps older than 5 days'
+find "$(dirname "$dbdump")" -mtime +5 -delete -print
+
+export B2_ACCOUNT_ID='{{ backblaze.keyID  }}'
+export B2_ACCOUNT_KEY='{{ backblaze.applicationKey }}'
+export RESTIC_PASSWORD='{{ restic.repopass }}'
+export RESTIC_REPOSITORY='b2:drillpress-backup:restic'
+
+##
+if ! restic snapshots &>/dev/null; then
+  echo 'Initialising restic repo'
+  restic -q init
+fi
+
+##
+echo 'Backing up dokuwiki and wordpress'
+restic -q -v backup \
+  /srv/dokuwiki \
+  /srv/wordpress/www \
+  /srv/wordpress/db-dumps
+
+##
+echo 'Backup done'

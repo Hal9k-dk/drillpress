@@ -18,3 +18,9 @@ ssh:
     - jbro
 watchtower:
   slack_hook_url: "{{ vault.watchtower.slack_hook_url }}"
+backblaze:
+  keyID: "{{ vault.backblaze.keyID }}"
+  keyName: drillpress
+  applicationKey: "{{ vault.backblaze.applicationKey }}"
+restic:
+  repopass: "{{ vault.restic.repopass }}"
