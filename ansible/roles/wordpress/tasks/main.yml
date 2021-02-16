@@ -2,7 +2,7 @@
 - name: Wordpress MySQL server
   community.general.docker_container:
     name: wordpress-db
-    image: "mysql:8"
+    image: "mysql:5"
     volumes:
       - "/srv/wordpress/mysql:/var/lib/mysql"
     restart_policy: always
@@ -29,6 +29,7 @@
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
       WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
+      WORDPRESS_TABLE_PREFIX: hal9k_dk_wp_
       WORDPRESS_CONFIG_EXTRA: |
         define( 'WP_HOME', 'https://{{ wordpress.hostname }}' );
         define( 'WP_SITEURL', 'https://{{ wordpress.hostname }}' );
