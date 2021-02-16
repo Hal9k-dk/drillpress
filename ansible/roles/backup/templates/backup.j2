@@ -2,22 +2,33 @@
 ##
 echo 'Backup started'
 
-dbdump="/srv/wordpress/db-dumps/$(date -u -Is)"
+##
+pushd /srv/wordpress/www || exit
+
+##
+dbdump="wp-content/dbdump/$(date -u -Is).sql"
 mkdir -p "$(dirname "$dbdump")"
+chown www-data:www-data "$(dirname "$dbdump")"
 
 ##
 echo Dumping wordpress-db to: "$dbdump"
-docker container \
-  exec -e MYSQL_PWD='{{ mysql.rootpass }}' wordpress-db \
-  mysqldump -A > "$dbdump"
+docker run -it --rm \
+  --user 33:33 \
+  --volumes-from wordpress \
+  --link wordpress-db wordpress:cli \
+  wp db export "$dbdump"
 
 ##
 echo "Compressing $dbdump"
 bzip2 -9 "$dbdump"
 
+
 ##
 echo 'Removing db dumps older than 5 days'
 find "$(dirname "$dbdump")" -mtime +5 -delete -print
+
+##
+popd || exit
 
 export B2_ACCOUNT_ID='{{ backblaze.keyID  }}'
 export B2_ACCOUNT_KEY='{{ backblaze.applicationKey }}'
