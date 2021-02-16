@@ -7,10 +7,10 @@
       - "/srv/wordpress/mysql:/var/lib/mysql"
     restart_policy: always
     env:
-       MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
-       MYSQL_DATABASE: "{{ wordpress.db.name }}"
-       MYSQL_USER: "{{ wordpress.db.user }}"
-       MYSQL_PASSWORD: "{{ wordpress.db.pass }}"
+      MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
+      MYSQL_DATABASE: "{{ wordpress.db.name }}"
+      MYSQL_USER: "{{ wordpress.db.user }}"
+      MYSQL_PASSWORD: "{{ wordpress.db.pass }}"
 
 - name: Wordpress
   community.general.docker_container:
