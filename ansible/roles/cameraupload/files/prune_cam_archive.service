@@ -1,0 +1,6 @@
+[Unit]
+Description=Prune camera archive
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/prune_cam_archive.sh

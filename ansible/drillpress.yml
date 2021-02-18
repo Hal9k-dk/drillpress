@@ -44,6 +44,12 @@
   roles:
     - dokuwiki
 
+- name: Setup security camera upload
+  hosts: drillpress.hal9k.dk
+  tags: cameraupload
+  roles:
+    - cameraupload
+
 - name: Backup
   hosts: drillpress.hal9k.dk
   tags: backup
