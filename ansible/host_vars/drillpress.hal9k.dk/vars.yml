@@ -11,6 +11,8 @@ acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
   hostname: wiki2.hal9k.dk
+qrredirect:
+  hostname: qr3.hal9k.dk
 ssh:
   users:
     - bullestock

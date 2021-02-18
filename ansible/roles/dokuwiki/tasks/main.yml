@@ -13,3 +13,21 @@
       TZ: Europe/Copenhagen
       VIRTUAL_HOST: "{{ dokuwiki.hostname }}"
       LETSENCRYPT_HOST: "{{ dokuwiki.hostname }}"
+
+- name: QR Redirect
+  community.general.docker_container:
+    name: qr-redirect
+    image: hal9kdk/qr-redirect:latest
+    volumes_from: dokuwiki
+    restart_policy: always
+    expose: 80
+    env:
+      VIRTUAL_HOST: "{{ qrredirect.hostname }}"
+      LETSENCRYPT_HOST: "{{ qrredirect.hostname }}"
+      NGINX_HOST: "{{ qrredirect.hostname }}"
+      QRR_WATCH_FOLDER: /config/dokuwiki/data/pages
+      QRR_PREFIX: "{{ dokuwiki.hostname }}"
+      QRR_NOT_FOUND: /infrastruktur/it-services/qr/qr-kode_infoside
+      QRR_REBUILD_RATE_LIMIT: "10"
+      QRR_REBUILD_FREQ: "600"
+      QRR_LINK_MAP: qr.txt
