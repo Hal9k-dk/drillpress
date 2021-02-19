@@ -4,7 +4,7 @@ wordpress:
     name: wordpress
     user: wordpress
     pass: "{{ vault.wordpress.dbpass }}"
-  hostname: www.hal9k.dk
+  hostname: "www.hal9k.dk,hal9k.dk"
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acme:
