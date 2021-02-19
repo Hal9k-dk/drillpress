@@ -22,6 +22,7 @@ export B2_ACCOUNT_ID='{{ backblaze.keyID  }}'
 export B2_ACCOUNT_KEY='{{ backblaze.applicationKey }}'
 export RESTIC_PASSWORD='{{ restic.repopass }}'
 export RESTIC_REPOSITORY='b2:drillpress-backup:restic'
+export RESTIC_CACHE_DIR=/root/.cache/restic
 
 ##
 if ! restic snapshots &>/dev/null; then
