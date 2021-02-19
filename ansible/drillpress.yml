@@ -1,4 +1,11 @@
 ---
+- name: Set hostname
+  hosts: drillpress.hal9k.dk
+  tasks:
+    - name: drillpress.hal9k.dk
+      ansible.builtin.hostname:
+        name: drillpress.hal9k.dk
+
 - name: Install docker
   hosts: drillpress.hal9k.dk
   vars:
