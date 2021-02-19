@@ -26,7 +26,7 @@
       LETSENCRYPT_HOST: "{{ qrredirect.hostname }}"
       NGINX_HOST: "{{ qrredirect.hostname }}"
       QRR_WATCH_FOLDER: /config/dokuwiki/data/pages
-      QRR_PREFIX: "{{ dokuwiki.hostname }}"
+      QRR_PREFIX: "https://{{ dokuwiki.hostname }}"
       QRR_NOT_FOUND: /infrastruktur/it-services/qr/qr-kode_infoside
       QRR_REBUILD_RATE_LIMIT: "10"
       QRR_REBUILD_FREQ: "600"
