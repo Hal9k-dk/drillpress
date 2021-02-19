@@ -4,15 +4,15 @@ wordpress:
     name: wordpress
     user: wordpress
     pass: "{{ vault.wordpress.dbpass }}"
-  hostname: www2.hal9k.dk
+  hostname: www.hal9k.dk
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
-  hostname: wiki2.hal9k.dk
+  hostname: wiki.hal9k.dk
 qrredirect:
-  hostname: qr3.hal9k.dk
+  hostname: qr.hal9k.dk
 ssh:
   users:
     - bullestock
