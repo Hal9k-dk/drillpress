@@ -33,3 +33,25 @@
       WORDPRESS_CONFIG_EXTRA: |
         define( 'WP_HOME', 'https://{{ wordpress.hostname }}' );
         define( 'WP_SITEURL', 'https://{{ wordpress.hostname }}' );
+
+- name: xn--befridinelmler-vib.dk
+  community.general.docker_container:
+    name: xn--befridinelmler-vib.dk
+    image: "wordpress:latest"
+    volumes:
+      - "/srv/wordpress/xn--befridinelmler-vib.dk:/var/www/html"
+    restart_policy: always
+    links:
+      - wordpress-db
+    expose: 80
+    env:
+      VIRTUAL_HOST: xn--befridinelmler-vib.dk
+      LETSENCRYPT_HOST: xn--befridinelmler-vib.dk
+      WORDPRESS_DB_HOST: "wordpress-db:3306"
+      WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
+      WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
+      WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
+      WORDPRESS_TABLE_PREFIX: befrimaaler_wp_
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_HOME', 'https://xn--befridinelmler-vib.dk' );
+        define( 'WP_SITEURL', 'https://xn--befridinelmler-vib.dk' );
