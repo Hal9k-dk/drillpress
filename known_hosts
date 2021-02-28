@@ -1,2 +1,2 @@
 # drillpress.hal9k.dk:22 SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.1
-drillpress.hal9k.dk ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF/7rMeMQ7JHH7gL/TVJNaBuTdXCZC+ezm92Lv8lIcHN
+drillpress.hal9k.dk ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIBDTJBJaHzW4ffgj4TYQkiRyPw+V4dD5t0df8KYQ86JCgmxV+PfIdqnNz8Nks5UXikxc8+XARIBmuD0wsFnyr4=
