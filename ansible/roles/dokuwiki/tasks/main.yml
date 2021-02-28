@@ -7,6 +7,8 @@
       - "/srv/dokuwiki/config:/config"
     restart_policy: always
     expose: 80
+    labels:
+      com.centurylinklabs.watchtower.lifecycle.post-update: /app/dokuwiki/bin/indexer.php -c
     env:
       PUID: "1000"
       PGID: "1000"
