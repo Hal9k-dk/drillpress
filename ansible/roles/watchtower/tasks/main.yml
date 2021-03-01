@@ -7,7 +7,7 @@
       - "/var/run/docker.sock:/var/run/docker.sock"
     restart_policy: always
     env:
-      WATCHTOWER_LIFECYCLE_HOOKS: true
+      WATCHTOWER_LIFECYCLE_HOOKS: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: "{{ watchtower.slack_hook_url }}"
       WATCHTOWER_SCHEDULE: 0 0 2 * * *
