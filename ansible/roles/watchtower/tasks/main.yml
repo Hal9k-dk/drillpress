@@ -8,6 +8,7 @@
     restart_policy: always
     env:
       WATCHTOWER_LIFECYCLE_HOOKS: 'true'
+      WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: "{{ watchtower.slack_hook_url }}"
       WATCHTOWER_SCHEDULE: 0 0 2 * * *
