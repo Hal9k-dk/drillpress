@@ -5,10 +5,9 @@
     image: ghcr.io/linuxserver/dokuwiki
     volumes:
       - "/srv/dokuwiki/config:/config"
+      - "/srv/dokuwiki/index:/app/dokuwiki/data/index"
     restart_policy: always
     expose: 80
-    labels:
-      com.centurylinklabs.watchtower.lifecycle.post-update: /app/dokuwiki/bin/indexer.php -c
     env:
       PUID: "1000"
       PGID: "1000"
