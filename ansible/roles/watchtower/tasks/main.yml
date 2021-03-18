@@ -11,4 +11,5 @@
       WATCHTOWER_CLEANUP: 'true'
       WATCHTOWER_NOTIFICATIONS: slack
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: "{{ watchtower.slack_hook_url }}"
+      WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: "#monitoring"
       WATCHTOWER_SCHEDULE: 0 0 2 * * *
