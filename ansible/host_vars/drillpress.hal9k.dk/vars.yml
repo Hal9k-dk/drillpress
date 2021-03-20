@@ -26,3 +26,5 @@ backblaze:
   applicationKey: "{{ vault.backblaze.applicationKey }}"
 restic:
   repopass: "{{ vault.restic.repopass }}"
+slagios:
+  webhook: "{{ vault.slagios.webhook }}"
