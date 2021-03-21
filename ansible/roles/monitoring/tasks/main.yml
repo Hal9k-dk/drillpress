@@ -20,7 +20,10 @@
       - wordpress-db
     volumes:
       - "/srv/monitoring:/config"
+    expose: 80
     env:
+      VIRTUAL_HOST: "slagios.hal9k.dk"
+      LETSENCRYPT_HOST: "slagios.hal9k.dk"
       SLAGIOS_interval: 30s
       SLAGIOS_rinterval: 30s
       SLAGIOS_check_wp: /usr/lib/nagios/plugins/check_http -H www.hal9k.dk -f follow -t 5
