@@ -51,6 +51,12 @@
   roles:
     - dokuwiki
 
+- name: Setup monitoring
+  hosts: drillpress.hal9k.dk
+  tags: monitoring
+  roles:
+    - monitoring
+
 - name: Setup security camera upload
   hosts: drillpress.hal9k.dk
   tags: cameraupload
