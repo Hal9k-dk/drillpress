@@ -6,14 +6,14 @@
     restart_policy: always
     env:
       SLAGIOS_interval: 30s
-      SLAGIOS_check_wp: /usr/lib/nagios/plugins/check_http -H www.hal9k.dk -f follow
-      SLAGIOS_check_wp_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni www.hal9k.dk
+      SLAGIOS_check_wp: /usr/lib/nagios/plugins/check_http -H www.hal9k.dk -f follow -t 5
+      SLAGIOS_check_wp_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni www.hal9k.dk -t 5
       SLAGIOS_interval_wp_ssl: 1h
-      SLAGIOS_check_wp2: /usr/lib/nagios/plugins/check_http -H xn--befridinelmler-vib.dk -f follow
-      SLAGIOS_check_wp2_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni xn--befridinelmler-vib.dk
+      SLAGIOS_check_wp2: /usr/lib/nagios/plugins/check_http -H xn--befridinelmler-vib.dk -f follow -t 5
+      SLAGIOS_check_wp2_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni xn--befridinelmler-vib.dk -t 5
       SLAGIOS_interval_wp2_ssl: 1h
-      SLAGIOS_check_wiki: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -f follow
-      SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk
+      SLAGIOS_check_wiki: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -f follow -t 5
+      SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk -t 5
       SLAGIOS_interval_wiki_ssl: 1h
       SLAGIOS_check_disk_root: /usr/lib/nagios/plugins/check_disk -w 75 -c 85 -p /
       SLAGIOS_interval_disk_root: 15m
