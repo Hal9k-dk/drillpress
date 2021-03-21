@@ -1,9 +1,25 @@
 ---
+- name: Create monitoring directory
+  ansible.builtin.file:
+    path: /srv/monitoring
+    state: directory
+    mode: '0700'
+
+- name: Template wordpress-db check config
+  ansible.builtin.template:
+    src: wordpress-db.j2
+    dest: /srv/monitoring/wordpress-db.cnf
+    mode: '0700'
+
 - name: slagios
   community.general.docker_container:
     name: slagios
     image: hal9kdk/slagios
     restart_policy: always
+    links:
+      - wordpress-db
+    volumes:
+      - "/srv/monitoring:/config"
     env:
       SLAGIOS_interval: 30s
       SLAGIOS_check_wp: /usr/lib/nagios/plugins/check_http -H www.hal9k.dk -f follow -t 5
@@ -12,6 +28,7 @@
       SLAGIOS_check_wp2: /usr/lib/nagios/plugins/check_http -H xn--befridinelmler-vib.dk -f follow -t 5
       SLAGIOS_check_wp2_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni xn--befridinelmler-vib.dk -t 5
       SLAGIOS_interval_wp2_ssl: 1h
+      SLAGIOS_check_wp_mysql: /usr/lib/nagios/plugins/check_mysql -d {{ wordpress.db.name }} -H wordpress-db -P 3306 -f /config/wordpress-db.cnf
       SLAGIOS_check_wiki: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -f follow -t 5
       SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk -t 5
       SLAGIOS_interval_wiki_ssl: 1h
