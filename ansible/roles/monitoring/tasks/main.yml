@@ -40,3 +40,4 @@
       SLAGIOS_interval_disk_root: 15m
       SLAGIOS_rinterval_disk_root: 15m
       SLAGIOS_webhook: "{{ slagios.webhook }}"
+      SLAGIOS_signingkey: "{{ slagios.signing_key }}"

@@ -28,3 +28,4 @@ restic:
   repopass: "{{ vault.restic.repopass }}"
 slagios:
   webhook: "{{ vault.slagios.webhook }}"
+  signing_key: "{{ vault.slagios.signing_key }}"
