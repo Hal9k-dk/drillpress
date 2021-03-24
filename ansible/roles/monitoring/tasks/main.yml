@@ -14,7 +14,7 @@
 - name: slagios
   community.general.docker_container:
     name: slagios
-    image: hal9kdk/slagios
+    image: jbros/slagios
     restart_policy: always
     links:
       - wordpress-db
