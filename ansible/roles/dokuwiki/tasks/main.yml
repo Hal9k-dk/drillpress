@@ -8,6 +8,8 @@
       - "/srv/dokuwiki/index:/app/dokuwiki/data/index"
     restart_policy: always
     expose: 80
+    networks:
+      - name: nginx_net
     env:
       PUID: "1000"
       PGID: "1000"
@@ -22,6 +24,8 @@
     volumes_from: dokuwiki
     restart_policy: always
     expose: 80
+    networks:
+      - name: nginx_net
     env:
       VIRTUAL_HOST: "{{ qrredirect.hostname }}"
       LETSENCRYPT_HOST: "{{ qrredirect.hostname }}"

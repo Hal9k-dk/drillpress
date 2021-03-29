@@ -1,7 +1,7 @@
 ---
-- name: Wordpress network
+- name: Wordpress database network
   community.docker.docker_network:
-    name: wp_net
+    name: wp_db_net
 
 - name: Wordpress MySQL server
   community.general.docker_container:
@@ -10,7 +10,8 @@
     volumes:
       - "/srv/wordpress/mysql:/var/lib/mysql"
     networks:
-      - name: wp_net
+      - name: wp_db_net
+      - name: nginx_net
     restart_policy: always
     env:
       MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
@@ -25,7 +26,8 @@
     volumes:
       - "/srv/wordpress/www:/var/www/html"
     networks:
-      - name: wp_net
+      - name: wp_db_net
+      - name: nginx_net
     restart_policy: always
     expose: 80
     env:
@@ -47,7 +49,8 @@
     volumes:
       - "/srv/wordpress/xn--befridinelmler-vib.dk:/var/www/html"
     networks:
-      - name: wp_net
+      - name: wp_db_net
+      - name: nginx_net
     restart_policy: always
     expose: 80
     env:

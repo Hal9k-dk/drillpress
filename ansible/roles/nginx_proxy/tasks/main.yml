@@ -1,4 +1,8 @@
 ---
+- name: Nginx proxy network
+  community.docker.docker_network:
+    name: nginx_net
+
 - name:
   community.general.docker_container:
     name: nginx-proxy
@@ -11,6 +15,8 @@
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - name: nginx_net
     restart_policy: always
     env:
       ENABLE_IPV6: "true"
