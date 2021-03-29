@@ -1,10 +1,16 @@
 ---
+- name: Wordpress network
+  community.docker.docker_network:
+    name: wp_net
+
 - name: Wordpress MySQL server
   community.general.docker_container:
     name: wordpress-db
     image: "mysql:5"
     volumes:
       - "/srv/wordpress/mysql:/var/lib/mysql"
+    networks:
+      - name: wp_net
     restart_policy: always
     env:
       MYSQL_ROOT_PASSWORD: "{{ mysql.rootpass }}"
@@ -18,9 +24,9 @@
     image: "wordpress:latest"
     volumes:
       - "/srv/wordpress/www:/var/www/html"
+    networks:
+      - name: wp_net
     restart_policy: always
-    links:
-      - wordpress-db
     expose: 80
     env:
       VIRTUAL_HOST: "{{ wordpress.hostname }}"
@@ -40,9 +46,9 @@
     image: "wordpress:latest"
     volumes:
       - "/srv/wordpress/xn--befridinelmler-vib.dk:/var/www/html"
+    networks:
+      - name: wp_net
     restart_policy: always
-    links:
-      - wordpress-db
     expose: 80
     env:
       VIRTUAL_HOST: xn--befridinelmler-vib.dk,xn--befri-din-elmler-pob.dk

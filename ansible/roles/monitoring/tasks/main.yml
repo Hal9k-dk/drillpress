@@ -15,9 +15,9 @@
   community.general.docker_container:
     name: slagios
     image: jbros/slagios
+    networks:
+      - name: wp_net
     restart_policy: always
-    links:
-      - wordpress-db
     volumes:
       - "/srv/monitoring:/config"
     expose: 80
