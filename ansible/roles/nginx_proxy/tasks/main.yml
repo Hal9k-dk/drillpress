@@ -28,6 +28,7 @@
     volumes_from: nginx-proxy
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    restart_policy: always
     env:
       DEFAULT_EMAIL: "{{ acme.email }}"
 
