@@ -5,7 +5,6 @@
     image: ghcr.io/linuxserver/dokuwiki
     volumes:
       - "/srv/dokuwiki/config:/config"
-      - "/srv/dokuwiki/index:/app/dokuwiki/data/index"
     restart_policy: always
     expose: 80
     networks:
