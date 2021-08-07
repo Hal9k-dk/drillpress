@@ -3,6 +3,19 @@
   community.docker.docker_network:
     name: acs_db_net
 
+- name: ACS
+  community.general.docker_container:
+    name: acsv2
+    image: bullestock/acsv2
+    networks:
+      - name: acs_db_net
+      - name: nginx_net
+    restart_policy: always
+    expose: 80
+    env:
+      DJANGO_SECRET_KEY: acs.django_secret_key
+      DB_PASSWORD: acs.db.pass
+
 - name: ACS MySQL server
   community.general.docker_container:
     name: acs-db
