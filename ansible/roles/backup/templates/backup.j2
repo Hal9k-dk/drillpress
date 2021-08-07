@@ -34,6 +34,7 @@ fi
 echo 'Backing up dokuwiki and wordpress'
 restic -q -v backup \
   --exclude /srv/wordpress/mysql/ \
+  --exclude /srv/acs/mysql/ \
   /srv/dokuwiki \
   /srv/wordpress/
 
