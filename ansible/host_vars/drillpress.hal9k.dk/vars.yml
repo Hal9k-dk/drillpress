@@ -7,6 +7,13 @@ wordpress:
   hostname: "www.hal9k.dk,hal9k.dk"
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
+mysql-acs:
+  rootpass: "{{ vault.mysql-acs.rootpass }}"
+acs:
+  db:
+    name: acs
+    user: acs
+    pass: "{{ vault.acs.dbpass }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:

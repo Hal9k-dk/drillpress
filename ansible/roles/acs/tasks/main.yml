@@ -1,0 +1,20 @@
+---
+- name: ACS database network
+  community.docker.docker_network:
+    name: acs_db_net
+
+- name: ACS MySQL server
+  community.general.docker_container:
+    name: acs-db
+    image: "mysql:5"
+    volumes:
+      - "/srv/acs/mysql:/var/lib/mysql"
+    networks:
+      - name: acs_db_net
+    restart_policy: always
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mysql-acs.rootpass }}"
+      MYSQL_DATABASE: acs
+      MYSQL_USER: acs
+      MYSQL_PASSWORD: "{{ acs.db.pass }}"
+
