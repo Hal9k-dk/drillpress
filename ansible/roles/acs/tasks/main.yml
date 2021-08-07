@@ -11,11 +11,10 @@
       - "/srv/acs/mysql:/var/lib/mysql"
     networks:
       - name: acs_db_net
-      - name: nginx_net
     restart_policy: always
     env:
       MYSQL_ROOT_PASSWORD: "{{ mysql-acs.rootpass }}"
-      MYSQL_DATABASE: "{{ acs.db.name }}"
-      MYSQL_USER: "{{ acs.db.user }}"
+      MYSQL_DATABASE: acs
+      MYSQL_USER: acs
       MYSQL_PASSWORD: "{{ acs.db.pass }}"
 
