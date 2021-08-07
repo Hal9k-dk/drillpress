@@ -45,7 +45,7 @@
   roles:
     - wordpress
 
-- name: Seup Dokuwiki
+- name: Setup Dokuwiki
   hosts: drillpress.hal9k.dk
   tags: dokuwiki
   roles:
@@ -69,3 +69,8 @@
   roles:
     - backup
 
+- name: Setup ACS
+  hosts: drillpress.hal9k.dk
+  tags: acs
+  roles:
+    - acs

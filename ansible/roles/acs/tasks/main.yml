@@ -26,7 +26,7 @@
       - name: acs_db_net
     restart_policy: always
     env:
-      MYSQL_ROOT_PASSWORD: "{{ mysql-acs.rootpass }}"
+      MYSQL_ROOT_PASSWORD: "{{ acs.db.rootpass }}"
       MYSQL_DATABASE: acs
       MYSQL_USER: acs
       MYSQL_PASSWORD: "{{ acs.db.pass }}"
