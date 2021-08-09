@@ -11,7 +11,7 @@
       - name: acs_db_net
       - name: nginx_net
     restart_policy: always
-    expose: 80
+    expose: 8020
     env:
       DJANGO_SECRET_KEY: acs.django_secret_key
       DB_PASSWORD: acs.db.pass
