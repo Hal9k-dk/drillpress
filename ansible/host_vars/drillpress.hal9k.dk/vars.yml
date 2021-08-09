@@ -13,6 +13,7 @@ acs:
     name: acs
     user: acs
     pass: "{{ vault.acs.dbpass }}"
+  hostname: "acs.hal9k.dk"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
