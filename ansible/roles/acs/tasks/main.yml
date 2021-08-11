@@ -15,7 +15,6 @@
     env:
       VIRTUAL_HOST: "{{ acs.hostname }}"
       LETSENCRYPT_HOST: "{{ acs.hostname }}"
-      NGINX_HOST: "{{ acs.hostname }}"
       DJANGO_SECRET_KEY: acs.django_secret_key
       DB_PASSWORD: acs.db.pass
 
