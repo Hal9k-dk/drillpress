@@ -8,11 +8,8 @@ wordpress:
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acs:
-  db:
-    rootpass: "{{ vault.acs.rootpass }}"
-    name: acs
-    user: acs
-    pass: "{{ vault.acs.dbpass }}"
+  rootpass: "{{ vault.acs.rootpass }}"
+  pass: "{{ vault.acs.dbpass }}"
   hostname: "acs.hal9k.dk"
 acme:
   email: "{{ vault.acme.email }}"
