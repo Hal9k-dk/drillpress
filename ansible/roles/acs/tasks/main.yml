@@ -16,7 +16,7 @@
       VIRTUAL_HOST: "{{ acs.hostname }}"
       LETSENCRYPT_HOST: "{{ acs.hostname }}"
       DJANGO_SECRET_KEY: acs.django_secret_key
-      DB_PASSWORD: acs.db.pass
+      DB_PASSWORD: acs.dbpass
 
 - name: ACS MySQL server
   community.general.docker_container:
