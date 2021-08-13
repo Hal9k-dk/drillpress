@@ -9,7 +9,7 @@ mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acs:
   rootpass: "{{ vault.acs.rootpass }}"
-  pass: "{{ vault.acs.dbpass }}"
+  dbpass: "{{ vault.acs.dbpass }}"
   hostname: "acs.hal9k.dk"
 acme:
   email: "{{ vault.acme.email }}"
