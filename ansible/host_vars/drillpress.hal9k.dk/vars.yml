@@ -11,6 +11,8 @@ acs:
   rootpass: "{{ vault.acs.rootpass }}"
   dbpass: "{{ vault.acs.dbpass }}"
   hostname: "acs.hal9k.dk"
+  fluser: "{{ vault.acs.fluser }}"
+  flpass: "{{ vault.acs.flpass }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
