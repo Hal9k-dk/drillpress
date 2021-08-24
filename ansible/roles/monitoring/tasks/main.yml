@@ -18,6 +18,7 @@
     networks:
       - name: wp_db_net
       - name: nginx_net
+      - name: acs_db_net
     restart_policy: always
     volumes:
       - "/srv/monitoring:/config"
