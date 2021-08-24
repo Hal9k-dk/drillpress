@@ -2,7 +2,7 @@
 ##
 echo 'Backup started'
 
-##
+## Wordpress
 dbdump="/srv/wordpress/db-dumps/$(date -u -Is)"
 mkdir -p "$(dirname "$dbdump")"
 echo Dumping wordpress-db to: "$dbdump"
@@ -15,7 +15,23 @@ echo "Compressing $dbdump"
 bzip2 -9 "$dbdump"
 
 ##
-echo 'Removing db dumps older than 5 days'
+echo 'Removing Wordpress db dumps older than 5 days'
+find "$(dirname "$dbdump")" -mtime +5 -delete -print
+
+## ACS
+dbdump="/srv/acsv2/db-dumps/$(date -u -Is)"
+mkdir -p "$(dirname "$dbdump")"
+echo Dumping acs-db to: "$dbdump"
+docker container \
+  exec -e MYSQL_PWD='{{ acs.rootpass }}' acs-db \
+  mysqldump -A > "$dbdump"
+
+##
+echo "Compressing $dbdump"
+bzip2 -9 "$dbdump"
+
+##
+echo 'Removing ACS db dumps older than 5 days'
 find "$(dirname "$dbdump")" -mtime +5 -delete -print
 
 export B2_ACCOUNT_ID='{{ backblaze.keyID  }}'
@@ -31,12 +47,13 @@ if ! restic snapshots &>/dev/null; then
 fi
 
 ##
-echo 'Backing up dokuwiki and wordpress'
+echo 'Backing up dokuwiki, wordpress, and ACS'
 restic -q -v backup \
   --exclude /srv/wordpress/mysql/ \
   --exclude /srv/acs/mysql/ \
   /srv/dokuwiki \
-  /srv/wordpress/
+  /srv/wordpress/ \
+  /srv/acsv2/
 
 ##
 echo 'Backup done'

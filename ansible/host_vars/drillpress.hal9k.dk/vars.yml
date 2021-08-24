@@ -9,6 +9,8 @@ mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acs:
   rootpass: "{{ vault.acs.rootpass }}"
+  dbname: acs
+  dbuser: acs
   dbpass: "{{ vault.acs.dbpass }}"
   hostname: "acs.hal9k.dk"
   fluser: "{{ vault.acs.fluser }}"

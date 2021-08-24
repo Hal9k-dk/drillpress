@@ -37,6 +37,10 @@
       SLAGIOS_check_wiki: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -f follow -t 10
       SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk -t 10
       SLAGIOS_interval_wiki_ssl: 1h
+      SLAGIOS_check_acs_mysql: /usr/lib/nagios/plugins/check_mysql -d {{ acs.dbname }} -H acs-db -P 3306 -f /config/acs-db.cnf
+      SLAGIOS_check_acs: /usr/lib/nagios/plugins/check_http -H acs.hal9k.dk -f follow -t 10
+      SLAGIOS_check_acs_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni acs.hal9k.dk -t 10
+      SLAGIOS_interval_acs_ssl: 1h
       SLAGIOS_check_disk_root: /usr/lib/nagios/plugins/check_disk -w 75 -c 85 -p /
       SLAGIOS_interval_disk_root: 15m
       SLAGIOS_rinterval_disk_root: 15m
