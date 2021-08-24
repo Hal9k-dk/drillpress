@@ -11,6 +11,12 @@
     dest: /srv/monitoring/wordpress-db.cnf
     mode: '0700'
 
+- name: Template acs-db check config
+  ansible.builtin.template:
+    src: acs-db.j2
+    dest: /srv/monitoring/acs-db.cnf
+    mode: '0700'
+
 - name: slagios
   community.general.docker_container:
     name: slagios
