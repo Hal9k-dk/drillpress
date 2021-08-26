@@ -12,7 +12,7 @@ acs:
   dbname: acs
   dbuser: acs
   dbpass: "{{ vault.acs.dbpass }}"
-  hostname: "acs.hal9k.dk"
+  hostname: "panopticon.hal9k.dk"
   fluser: "{{ vault.acs.fluser }}"
   flpass: "{{ vault.acs.flpass }}"
 acme:
