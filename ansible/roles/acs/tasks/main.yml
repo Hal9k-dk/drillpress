@@ -10,6 +10,8 @@
     networks:
       - name: acs_db_net
       - name: nginx_net
+    volumes:
+      - "/srv/monitoring/acs-sync-status:/opt/app/acsv2/acs-sync-status"
     restart_policy: always
     expose: 8020
     env:
