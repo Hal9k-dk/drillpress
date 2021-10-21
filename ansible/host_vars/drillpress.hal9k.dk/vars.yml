@@ -37,3 +37,6 @@ restic:
 slagios:
   webhook: "{{ vault.slagios.webhook }}"
   signing_key: "{{ vault.slagios.signing_key }}"
+minio:
+  username: hal9k
+  password: "{{ vault.minio.password }}"

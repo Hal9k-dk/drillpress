@@ -1,0 +1,12 @@
+- name: MinIO
+  community.general.docker_container:
+    name: minio
+    image: minio/minio
+    volumes:
+    - "/srv/minio:/data"
+    expose:
+    - 9000
+    - 9001
+    env:
+      MINIO_ROOT_USER: "{{ minio.username }}"
+      MINIO_ROOT_PASSWORD: "{{ minio.password }}"
