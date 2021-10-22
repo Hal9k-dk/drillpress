@@ -40,3 +40,6 @@ slagios:
 minio:
   username: hal9k
   password: "{{ vault.minio.password }}"
+  accesskey: "{{ vault.minio.accesskey }}"
+  secretkey: "{{ vault.minio.secretkey }}"
+  

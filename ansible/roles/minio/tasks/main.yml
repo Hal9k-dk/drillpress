@@ -2,6 +2,8 @@
   community.general.docker_container:
     name: minio
     image: minio/minio
+    command: server /data
+    restart_policy: always
     volumes:
     - "/srv/minio:/data"
     expose:
@@ -10,3 +12,5 @@
     env:
       MINIO_ROOT_USER: "{{ minio.username }}"
       MINIO_ROOT_PASSWORD: "{{ minio.password }}"
+      MINIO_ACCESS_KEY: "{{ minio.accesskey }}"
+      MINIO_SECRET_KEY: "{{ minio.secretkey }}"
