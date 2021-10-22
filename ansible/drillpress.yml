@@ -74,3 +74,9 @@
   tags: acs
   roles:
     - acs
+
+- name: Setup MinIO
+  hosts: drillpress.hal9k.dk
+  tags: minio
+  roles:
+    - minio
