@@ -8,15 +8,11 @@
       - "/srv/minio:/data"
     expose:
       - 9000
-      - 9001
     networks:
       - name: nginx_net
     env:
       MINIO_ROOT_USER: "{{ minio.username }}"
       MINIO_ROOT_PASSWORD: "{{ minio.password }}"
-      MINIO_ACCESS_KEY: "{{ minio.accesskey }}"
-      MINIO_SECRET_KEY: "{{ minio.secretkey }}"
       MINIO_BROWSER_REDIRECT_URL: "http://localhost:9001"
       VIRTUAL_HOST: "{{ minio.hostname }}"
-      VIRTUAL_PORT: "9000"
       LETSENCRYPT_HOST: "{{ minio.hostname }}"
