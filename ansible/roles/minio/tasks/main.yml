@@ -5,10 +5,10 @@
     command: server /data --console-address ":9001"
     restart_policy: always
     volumes:
-    - "/srv/minio:/data"
+      - "/srv/minio:/data"
     expose:
-    - 9000
-    - 9001
+      - 9000
+      - 9001
     networks:
       - name: nginx_net
     env:
