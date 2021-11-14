@@ -1,7 +1,7 @@
 - name: Copy nginx per-host config
   ansible.builtin.template:
     src: minio.j2
-    dest: /etc/nginx/vhost.d
+    dest: /srv/nginx-proxy/vhost.d/minio.hal9k.dk
 
 - name: MinIO
   community.general.docker_container:
