@@ -1,3 +1,8 @@
+- name: Copy nginx per-host config
+  ansible.builtin.template:
+    src: minio.j2
+    dest: /etc/nginx/vhost.d
+
 - name: MinIO
   community.general.docker_container:
     name: minio
