@@ -1,5 +1,5 @@
 - name: Copy nginx per-host config
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: minio.j2
     dest: /srv/nginx-proxy/vhost.d/minio.hal9k.dk
 
