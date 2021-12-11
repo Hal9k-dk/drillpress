@@ -1,7 +1,7 @@
 ---
 - name: ACS Gateway
   community.general.docker_container:
-    name: acs-gw
+    name: acsgw
     image: bullestock/acs-gateway
     networks:
       - name: nginx_net
