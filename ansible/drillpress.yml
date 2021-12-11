@@ -75,6 +75,12 @@
   roles:
     - acs
 
+- name: Setup ACS Gateway
+  hosts: drillpress.hal9k.dk
+  tags: acs-gw
+  roles:
+    - acs-gw
+
 - name: Setup MinIO
   hosts: drillpress.hal9k.dk
   tags: minio

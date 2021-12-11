@@ -1,0 +1,12 @@
+---
+- name: ACS Gateway
+  community.general.docker_container:
+    name: acs-gw
+    image: bullestock/acs-gateway
+    networks:
+      - name: nginx_net
+    expose: 5000
+    env:
+      VIRTUAL_HOST: "{{ acs-gw.hostname }}"
+      LETSENCRYPT_HOST: "{{ acs-gw.hostname }}"
+      VALIDATION_TOKEN: "{{ acs-gw.apitoken }}"
