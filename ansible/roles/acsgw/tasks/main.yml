@@ -7,6 +7,6 @@
       - name: nginx_net
     expose: 5000
     env:
-      VIRTUAL_HOST: "{{ acs-gw.hostname }}"
-      LETSENCRYPT_HOST: "{{ acs-gw.hostname }}"
-      VALIDATION_TOKEN: "{{ acs-gw.apitoken }}"
+      VIRTUAL_HOST: "{{ acsgw.hostname }}"
+      LETSENCRYPT_HOST: "{{ acsgw.hostname }}"
+      VALIDATION_TOKEN: "{{ acsgw.apitoken }}"

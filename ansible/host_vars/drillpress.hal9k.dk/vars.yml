@@ -15,10 +15,10 @@ acs:
   hostname: "panopticon.hal9k.dk"
   fluser: "{{ vault.acs.fluser }}"
   flpass: "{{ vault.acs.flpass }}"
-acs-gw:
+acsgw:
   hostname: "acsgateway.hal9k.dk"
-  apitoken: "{{ vault.acs-gw.apitoken }}"
-  webhook: "{{ vault.acs-gw.webhook }}"
+  apitoken: "{{ vault.acsgw.apitoken }}"
+  webhook: "{{ vault.acsgw.webhook }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
