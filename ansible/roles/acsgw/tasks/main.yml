@@ -9,4 +9,6 @@
     env:
       VIRTUAL_HOST: "{{ acsgw.hostname }}"
       LETSENCRYPT_HOST: "{{ acsgw.hostname }}"
-      VALIDATION_TOKEN: "{{ acsgw.apitoken }}"
+      SLACK_VERIFICATION_TOKEN: "{{ acsgw.slacktoken }}"
+      SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
+      ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
