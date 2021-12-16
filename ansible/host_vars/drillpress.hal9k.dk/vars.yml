@@ -21,6 +21,7 @@ acsgw:
   slackteam: "T04LP1S7R"
   acstoken: "{{ vault.acsgw.acstoken }}"
   webhook: "{{ vault.acsgw.webhook }}"
+  actionusers: "{{ vault.acsgw.actionusers }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:

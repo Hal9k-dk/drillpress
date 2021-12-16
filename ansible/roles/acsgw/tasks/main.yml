@@ -12,3 +12,4 @@
       SLACK_VERIFICATION_TOKEN: "{{ acsgw.slacktoken }}"
       SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
+      ACTION_USERS: "{{ acsgw.actionusers }}"
