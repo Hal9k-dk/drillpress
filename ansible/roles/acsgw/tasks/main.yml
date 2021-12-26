@@ -13,3 +13,6 @@
       SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
       ACTION_USERS: "{{ acsgw.actionusers }}"
+      CAMERA_VERIFICATION_TOKEN: "{{ acsgw.camera.token }}"
+      CAMERA_DEFAULTS: "{{ acsgw.camera.defaults }}"
+      CAMERA_OVERRIDES: "{{ acsgw.camera.overrides }}"
