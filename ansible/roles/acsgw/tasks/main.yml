@@ -14,5 +14,7 @@
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
       ACTION_USERS: "{{ acsgw.actionusers }}"
       CAMERA_VERIFICATION_TOKEN: "{{ acsgw.camera.token }}"
-      CAMERA_DEFAULTS: "{{ acsgw.camera.defaults }}"
-      CAMERA_OVERRIDES: "{{ acsgw.camera.overrides }}"
+      CAMERA_DEFAULT_KEEPALIVE: "{{ acsgw.camera.defaults.keepalive }}"
+      CAMERA_DEFAULT_PIXEL_THRESHOLD: "{{ acsgw.camera.defaults.pixel_threshold }}"
+      CAMERA_DEFAULT_PERCENT_THRESHOLD: "{{ acsgw.camera.defaults.percent_threshold }}"
+

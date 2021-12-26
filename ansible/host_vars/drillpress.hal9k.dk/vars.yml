@@ -28,7 +28,6 @@ acsgw:
       keepalive: 600
       pixel_threshold: 10
       percent_threshold: 2
-    overrides:
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
