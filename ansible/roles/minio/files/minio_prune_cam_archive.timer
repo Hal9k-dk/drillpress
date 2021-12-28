@@ -1,0 +1,9 @@
+[Unit]
+Description=Run minio camera archive prune every night
+
+[Timer]
+Unit=minio_prune_cam_archive.service
+OnCalendar=01:00
+
+[Install]
+WantedBy=timers.target

@@ -21,3 +21,26 @@
       MINIO_BROWSER_REDIRECT_URL: "http://localhost:9001"
       VIRTUAL_HOST: "{{ minio.hostname }}"
       LETSENCRYPT_HOST: "{{ minio.hostname }}"
+
+- name: Upload prune cam archive script to /usr/local/lib
+  ansible.builtin.copy:
+    src: minio_prune_cam_archive.sh
+    dest: /usr/local/lib/minio_prune_cam_archive.sh
+    mode: '0700'
+
+- name: Install prune cam archive service
+  ansible.builtin.copy:
+    src: minio_prune_cam_archive.service
+    dest: /etc/systemd/system/
+
+- name: Install prune cam archive timer
+  ansible.builtin.copy:
+    src: minio_prune_cam_archive.timer
+    dest: /etc/systemd/system/
+
+- name: Enable prune cam archive schedule
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: minio_prune_cam_archive.timer
+    enabled: "yes"
+    state: started

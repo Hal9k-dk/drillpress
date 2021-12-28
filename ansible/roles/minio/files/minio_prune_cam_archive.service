@@ -1,0 +1,6 @@
+[Unit]
+Description=Prune minio camera archive
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/minio_prune_cam_archive.sh
