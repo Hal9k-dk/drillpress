@@ -21,7 +21,8 @@ acsgw:
   slackteam: "T04LP1S7R"
   acstoken: "{{ vault.acsgw.acstoken }}"
   webhook: "{{ vault.acsgw.webhook }}"
-  actionusers: "{{ vault.acsgw.actionusers }}"
+  acsactionusers: "{{ vault.acsgw.acsactionusers }}"
+  camactionusers: "{{ vault.acsgw.camactionusers }}"
   camera:
     token: "{{ vault.acsgw.camera.token }}"
     defaults:
