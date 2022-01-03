@@ -1,9 +1,0 @@
-[Unit]
-Description=Run camera archive prune every night
-
-[Timer]
-Unit=prune_cam_archive.service
-OnCalendar=01:00
-
-[Install]
-WantedBy=timers.target
