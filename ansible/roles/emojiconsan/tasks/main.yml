@@ -1,0 +1,17 @@
+---
+- name: Create backup directory
+  ansible.builtin.file:
+    path: /srv/emojis
+    state: directory
+    mode: '0700'
+
+- name: emojiconsan
+  community.general.docker_container:
+    name: emojiconsan
+    image: bullestock/emojiconsan
+    restart_policy: always
+    volumes:
+      - "/srv/emojis:/emojis"
+    env:
+      TOKEN: "{{ emojiconsan.token }}"
+      HOOK: "{{ emojiconsan.hook }}"

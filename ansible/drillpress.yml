@@ -80,3 +80,9 @@
   tags: minio
   roles:
     - minio
+
+- name: Setup Emojiconsan
+  hosts: drillpress.hal9k.dk
+  tags: emojiconsan
+  roles:
+    - emojiconsan

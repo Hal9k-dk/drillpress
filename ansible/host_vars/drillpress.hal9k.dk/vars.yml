@@ -55,3 +55,6 @@ minio:
   username: hal9k
   password: "{{ vault.minio.password }}"
   hostname: minio.hal9k.dk
+emojiconsan:
+  token: "{{ vault.emojiconsan.token }}"
+  hook: "{{ vault.emojiconsan.hook }}"
