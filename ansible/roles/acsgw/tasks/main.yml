@@ -5,6 +5,9 @@
     image: bullestock/acs-gateway
     networks:
       - name: nginx_net
+    volumes:
+      - "/srv/monitoring/acsgw:/opt/service/monitoring"
+      - "/srv/acsgw:/opt/service/persistent"
     expose: 5000
     env:
       VIRTUAL_HOST: "{{ acsgw.hostname }}"
