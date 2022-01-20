@@ -48,8 +48,10 @@
       SLAGIOS_check_acs: /usr/lib/nagios/plugins/check_http -H {{ acs.hostname }} -f follow -t 10
       SLAGIOS_check_acs_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni {{ acs.hostname }} -t 10
       SLAGIOS_interval_acs_ssl: 1h
-      SLAGIOS_check_acs_sync: /usr/lib/nagios/plugins/check_file_age -w 600 -c 900 -f /config/acsv2/acs-sync-status
+      SLAGIOS_check_acs_sync: /usr/lib/nagios/plugins/check_status -f /config/acsv2/acs-sync-status
       SLAGIOS_interval_acs_sync: 5m
+      SLAGIOS_check_cams_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 600 -c 900 -f /config/acsgw/cam-heartbeat
+      SLAGIOS_interval_cams_heartbeat: 60m
       SLAGIOS_check_disk_root: /usr/lib/nagios/plugins/check_disk -w 75 -c 85 -p /
       SLAGIOS_interval_disk_root: 15m
       SLAGIOS_rinterval_disk_root: 15m
