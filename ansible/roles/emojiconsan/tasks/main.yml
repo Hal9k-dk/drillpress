@@ -12,6 +12,7 @@
     restart_policy: always
     volumes:
       - "/srv/emojis:/emojis"
+      - "/srv/monitoring/emojiconsan:/monitoring"
     env:
       TOKEN: "{{ emojiconsan.token }}"
       HOOK: "{{ emojiconsan.hook }}"
