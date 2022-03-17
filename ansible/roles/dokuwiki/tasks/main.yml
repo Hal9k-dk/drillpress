@@ -1,4 +1,10 @@
 ---
+
+- name: Copy nginx per-host config
+  ansible.builtin.copy:
+    src: dokuwiki
+    dest: /srv/nginx-proxy/vhost.d/wiki.hal9k.dk
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki
