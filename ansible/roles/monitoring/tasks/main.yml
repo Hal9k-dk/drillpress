@@ -58,6 +58,8 @@
       SLAGIOS_interval_acs_heartbeat: 5m
       SLAGIOS_check_bacs_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 120 -c 300 /config/acsgw/bacs-heartbeat
       SLAGIOS_interval_bacs_heartbeat: 5m
+      SLAGIOS_check_camctl_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 43200 -c 86400 /config/acsgw/camctl-heartbeat
+      SLAGIOS_interval_camctl_heartbeat: 5m
       SLAGIOS_check_disk_root: /usr/lib/nagios/plugins/check_disk -w 75 -c 85 -p /
       SLAGIOS_interval_disk_root: 15m
       SLAGIOS_rinterval_disk_root: 15m
