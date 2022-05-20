@@ -21,4 +21,5 @@
       CAMERA_DEFAULT_KEEPALIVE: "{{ acsgw.camera.defaults.keepalive }}"
       CAMERA_DEFAULT_PIXEL_THRESHOLD: "{{ acsgw.camera.defaults.pixel_threshold }}"
       CAMERA_DEFAULT_PERCENT_THRESHOLD: "{{ acsgw.camera.defaults.percent_threshold }}"
+      CAMCTL_VERIFICATION_TOKEN: "{{ acsgw.camctl.token }}"
 

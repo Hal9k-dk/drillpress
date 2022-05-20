@@ -29,6 +29,8 @@ acsgw:
       keepalive: 60
       pixel_threshold: 10
       percent_threshold: 2
+  camctl:
+    token: "{{ vault.acsgw.camctl.token }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
