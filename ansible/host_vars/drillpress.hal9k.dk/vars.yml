@@ -61,3 +61,5 @@ minio:
 emojiconsan:
   token: "{{ vault.emojiconsan.token }}"
   hook: "{{ vault.emojiconsan.hook }}"
+mosquitto:
+  hostname: mqtt.hal9k.dk
