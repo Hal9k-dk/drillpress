@@ -13,6 +13,7 @@
       VIRTUAL_HOST: "{{ acsgw.hostname }}"
       LETSENCRYPT_HOST: "{{ acsgw.hostname }}"
       SLACK_VERIFICATION_TOKEN: "{{ acsgw.slacktoken }}"
+      SLACK_WRITE_TOKEN: "{{ acsgw.slackwritetoken }}"
       SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
       ACS_ACTION_USERS: "{{ acsgw.acsactionusers }}"

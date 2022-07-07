@@ -18,6 +18,7 @@ acs:
 acsgw:
   hostname: "acsgateway.hal9k.dk"
   slacktoken: "{{ vault.acsgw.slacktoken }}"
+  slackwritetoken: "{{ vault.acsgw.slackwritetoken }}"
   slackteam: "T04LP1S7R"
   acstoken: "{{ vault.acsgw.acstoken }}"
   webhook: "{{ vault.acsgw.webhook }}"
