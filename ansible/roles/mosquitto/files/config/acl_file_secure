@@ -1,0 +1,9 @@
+# anonymous users
+topic read hal9k/#
+topic readwrite test/#
+
+# hal9k user for everyone
+user hal9k
+topic readwrite hal9k/#
+topic readwrite test/#
+topic read #

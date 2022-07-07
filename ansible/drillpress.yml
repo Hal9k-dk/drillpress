@@ -86,3 +86,9 @@
   tags: emojiconsan
   roles:
     - emojiconsan
+
+- name: Setup Mosquitto (MQTT broker)
+  hosts: drillpress.hal9k.dk
+  tags: mosquitto
+  roles:
+    - mosquitto

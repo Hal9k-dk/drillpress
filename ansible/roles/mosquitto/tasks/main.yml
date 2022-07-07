@@ -1,0 +1,35 @@
+- name: Copy nginx per-host config
+  ansible.builtin.copy:
+    src: mqtt
+    dest: /srv/nginx-proxy/vhost.d/mqtt.hal9k.dk
+
+- name: Mosquitto configuration
+  ansible.builtin.copy:
+    src: config/
+    dest: /srv/mosquitto/config/
+  register: mosquitto_conf
+
+- name: Mosquitto
+  community.general.docker_container:
+    name: mosquitto
+    image: "eclipse-mosquitto:latest"
+    networks:
+      - name: nginx_net
+    restart_policy: always
+    ports:
+      - 0.0.0.0:1883:1883/tcp
+      - '[::]:1883:1883/tcp'
+      - 0.0.0.0:8883:8883/tcp
+      - '[::]:8883:8883/tcp'
+    volumes:
+      - "/srv/mosquitto/config:/mosquitto/config"
+      - "/srv/nginx-proxy/certs/mqtt.hal9k.dk:/mosquitto/certs"
+    env:
+      VIRTUAL_HOST: "{{ mosquitto.hostname }}"
+      LETSENCRYPT_HOST: "{{ mosquitto.hostname }}"
+
+- name: Restart image
+  docker_container:
+    name: mosquitto
+    restart: yes
+  when: mosquitto_conf

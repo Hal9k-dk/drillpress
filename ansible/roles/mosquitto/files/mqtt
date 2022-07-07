@@ -1,0 +1,3 @@
+location ~ ^/$ {
+    return 301 https://wiki.hal9k.dk/infrastruktur/it-services/mqtt;
+}

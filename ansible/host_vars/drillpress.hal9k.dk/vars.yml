@@ -43,6 +43,7 @@ ssh:
     - bullestock
     - fasmide
     - jbro
+    - larsch
 watchtower:
   slack_hook_url: "{{ vault.watchtower.slack_hook_url }}"
 backblaze:
@@ -61,3 +62,5 @@ minio:
 emojiconsan:
   token: "{{ vault.emojiconsan.token }}"
   hook: "{{ vault.emojiconsan.hook }}"
+mosquitto:
+  hostname: mqtt.hal9k.dk
