@@ -24,3 +24,25 @@
       CAMERA_DEFAULT_PERCENT_THRESHOLD: "{{ acsgw.camera.defaults.percent_threshold }}"
       CAMCTL_VERIFICATION_TOKEN: "{{ acsgw.camctl.token }}"
 
+- name: Upload prune logs script to /usr/local/lib
+  ansible.builtin.copy:
+    src: acs_prune_logs.sh
+    dest: /usr/local/lib/acs_prune_logs.sh
+    mode: '0700'
+
+- name: Install prune logs service
+  ansible.builtin.copy:
+    src: acs_prune_logs.service
+    dest: /etc/systemd/system/
+
+- name: Install prune logs timer
+  ansible.builtin.copy:
+    src: acs_prune_logs.timer
+    dest: /etc/systemd/system/
+
+- name: Enable prune logs schedule
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: acs_prune_logs.timer
+    enabled: "yes"
+    state: started

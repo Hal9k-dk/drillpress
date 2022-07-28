@@ -1,0 +1,6 @@
+[Unit]
+Description=Prune ACS logs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/acs_prune_logs.sh

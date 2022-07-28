@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ACS prune logs every night
+
+[Timer]
+Unit=acs_prune_logs.service
+OnCalendar=02:00
+
+[Install]
+WantedBy=timers.target
