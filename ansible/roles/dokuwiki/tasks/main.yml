@@ -42,3 +42,26 @@
       QRR_REBUILD_RATE_LIMIT: "10"
       QRR_REBUILD_FREQ: "600"
       QRR_LINK_MAP: qr.txt
+
+- name: Upload prune cam archive script to /usr/local/lib
+  ansible.builtin.copy:
+    src: dokuwiki_prune_logs.sh
+    dest: /usr/local/lib/dokuwiki_prune_logs.sh
+    mode: '0700'
+
+- name: Install prune cam archive service
+  ansible.builtin.copy:
+    src: dokuwiki_prune_logs.service
+    dest: /etc/systemd/system/
+
+- name: Install prune cam archive timer
+  ansible.builtin.copy:
+    src: dokuwiki_prune_logs.timer
+    dest: /etc/systemd/system/
+
+- name: Enable prune cam archive schedule
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: dokuwiki_prune_logs.timer
+    enabled: "yes"
+    state: started

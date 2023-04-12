@@ -1,0 +1,6 @@
+[Unit]
+Description=Prune dokuwiki logs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/dokuwiki_prune_logs.sh

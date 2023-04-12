@@ -1,0 +1,9 @@
+[Unit]
+Description=Run dokuwiki logs prune every night
+
+[Timer]
+Unit=dokuwiki_prune_logs.service
+OnCalendar=01:00
+
+[Install]
+WantedBy=timers.target
