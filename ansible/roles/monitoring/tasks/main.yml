@@ -1,4 +1,29 @@
 ---
+- name: Install nagios-plugins-contrib
+  apt:
+    name: nagios-plugins-contrib
+    update_cache: yes
+
+- name: Install file
+  apt:
+    name: file
+    update_cache: yes
+
+- name: Install libmysqlclient21
+  apt:
+    name: libmysqlclient21
+    update_cache: yes
+
+- name: Install perl
+  apt:
+    name: perl
+    update_cache: yes
+
+- name: Install monitoring-plugins
+  apt:
+    name: monitoring-plugins
+    update_cache: yes
+
 - name: Create monitoring directory
   ansible.builtin.file:
     path: /srv/monitoring
@@ -37,9 +62,9 @@
       SLAGIOS_check_wp: /usr/lib/nagios/plugins/check_http -H www.hal9k.dk -f follow -t 10
       SLAGIOS_check_wp_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni www.hal9k.dk -t 10
       SLAGIOS_interval_wp_ssl: 1h
-      #SLAGIOS_check_wp2: /usr/lib/nagios/plugins/check_http -H xn--befridinelmler-vib.dk -f follow -t 10
-      #SLAGIOS_check_wp2_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni xn--befridinelmler-vib.dk -t 10
-      #SLAGIOS_interval_wp2_ssl: 1h
+      SLAGIOS_check_wp2: /usr/lib/nagios/plugins/check_http -H xn--befridinelmler-vib.dk -f follow -t 10
+      SLAGIOS_check_wp2_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni xn--befridinelmler-vib.dk -t 10
+      SLAGIOS_interval_wp2_ssl: 1h
       SLAGIOS_check_wp_mysql: /usr/lib/nagios/plugins/check_mysql -d {{ wordpress.db.name }} -H wordpress-db -P 3306 -f /config/wordpress-db.cnf
       SLAGIOS_check_wiki: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -f follow -t 10
       SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk -t 10
