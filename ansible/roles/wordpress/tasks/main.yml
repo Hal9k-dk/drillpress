@@ -53,8 +53,8 @@
     restart_policy: always
     expose: 80
     env:
-      VIRTUAL_HOST: xn--befridinelmler-vib.dk,xn--befri-din-elmler-pob.dk
-      LETSENCRYPT_HOST: xn--befridinelmler-vib.dk,xn--befri-din-elmler-pob.dk
+      VIRTUAL_HOST: xn--befridinelmler-vib.dk
+      LETSENCRYPT_HOST: xn--befridinelmler-vib.dk
       WORDPRESS_DB_HOST: "wordpress-db:3306"
       WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
       WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
