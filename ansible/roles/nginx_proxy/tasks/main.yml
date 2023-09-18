@@ -6,7 +6,7 @@
 - name:
   community.general.docker_container:
     name: nginx-proxy
-    image: jwilder/nginx-proxy
+    image: nginxproxy/nginx-proxy
     volumes:
       - "/srv/nginx-proxy/certs:/etc/nginx/certs"
       - "/srv/nginx-proxy/vhost.d:/etc/nginx/vhost.d"
