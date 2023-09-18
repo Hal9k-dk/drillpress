@@ -24,7 +24,7 @@
 - name:
   community.general.docker_container:
     name: nginx-proxy-letsencrypt
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: nginxproxy/acme-companion
     volumes_from: nginx-proxy
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
