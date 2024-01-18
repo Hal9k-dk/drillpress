@@ -54,8 +54,6 @@
       SLAGIOS_interval_emojiconsan: 5m
       SLAGIOS_check_cams_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 43200 -c 86400 /config/acsgw/cam-heartbeat
       SLAGIOS_interval_cams_heartbeat: 5m
-      SLAGIOS_check_acs_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/acs-heartbeat
-      SLAGIOS_interval_acs_heartbeat: 5m
       SLAGIOS_check_acs_barndoor_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/acs-barndoor-heartbeat
       SLAGIOS_interval_acs_barndoor_heartbeat: 5m
       SLAGIOS_check_acs_main_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/acs-main-heartbeat
