@@ -15,8 +15,6 @@ acs:
   hostname: "panopticon.hal9k.dk"
   fluser: "{{ vault.acs.fluser }}"
   flpass: "{{ vault.acs.flpass }}"
-acsv3:
-  hostname: "acs.hal9k.dk"
 acsgw:
   hostname: "acsgateway.hal9k.dk"
   slacktoken: "{{ vault.acsgw.slacktoken }}"

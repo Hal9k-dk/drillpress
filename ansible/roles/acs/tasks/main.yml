@@ -2,17 +2,16 @@
 - name: ACS database network
   community.docker.docker_network:
     name: acs_db_net
-    name: acsv3_db_net
 
 - name: ACS
   community.general.docker_container:
-    name: acsv2
-    image: bullestock/acsv2
+    name: acsv3
+    image: bullestock/acsv3
     networks:
       - name: acs_db_net
       - name: nginx_net
     volumes:
-      - "/srv/monitoring/acsv2:/opt/app/acsv2/monitoring"
+      - "/srv/monitoring/acsv3:/opt/app/acsv3/monitoring"
     restart_policy: always
     expose: 8020
     env:
@@ -23,48 +22,14 @@
       FL_USER: "{{ acs.fluser }}"
       FL_PASS: "{{ acs.flpass }}"
 
-- name: ACSv3
-  community.general.docker_container:
-    name: acsv3
-    image: bullestock/acsv3
-    networks:
-      - name: acsv3_db_net
-      - name: nginx_net
-    volumes:
-      - "/srv/monitoring/acsv3:/opt/app/acsv3/monitoring"
-    restart_policy: always
-    expose: 8020
-    env:
-      VIRTUAL_HOST: "{{ acsv3.hostname }}"
-      LETSENCRYPT_HOST: "{{ acsv3.hostname }}"
-      DJANGO_SECRET_KEY: acs.django_secret_key
-      DB_PASSWORD: "{{ acs.dbpass }}"
-      FL_USER: "{{ acs.fluser }}"
-      FL_PASS: "{{ acs.flpass }}"
-
 - name: ACS MySQL server
-  community.general.docker_container:
-    name: acs-db
-    image: "mysql:5"
-    volumes:
-      - "/srv/acs/mysql:/var/lib/mysql"
-    networks:
-      - name: acs_db_net
-    restart_policy: always
-    env:
-      MYSQL_ROOT_PASSWORD: "{{ acs.rootpass }}"
-      MYSQL_DATABASE: acs
-      MYSQL_USER: acs
-      MYSQL_PASSWORD: "{{ acs.dbpass }}"
-
-- name: ACS MySQL8 server
   community.general.docker_container:
     name: acs-db-8
     image: "mysql:8"
     volumes:
       - "/srv/acs/mysql8:/var/lib/mysql"
     networks:
-      - name: acsv3_db_net
+      - name: acs_db_net
     restart_policy: always
     env:
       MYSQL_ROOT_PASSWORD: "{{ acs.rootpass }}"
