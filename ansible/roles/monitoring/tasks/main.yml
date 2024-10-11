@@ -44,7 +44,7 @@
       SLAGIOS_check_wiki_redirect: /usr/lib/nagios/plugins/check_http -H wiki.hal9k.dk -e "HTTP/1.1 301" -t 10
       SLAGIOS_check_wiki_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni wiki.hal9k.dk --cn wiki.hal9k.dk -t 10
       SLAGIOS_interval_wiki_ssl: 1h
-      SLAGIOS_check_acs_mysql: /usr/lib/nagios/plugins/check_mysql -d {{ acs.dbname }} -H acs-db -P 3306 -f /config/acs-db.cnf
+      SLAGIOS_check_acs_mysql: /usr/lib/nagios/plugins/check_mysql -d {{ acs.dbname }} -H acs-db-8 -P 3306 -f /config/acs-db.cnf
       SLAGIOS_check_acs_redirect: /usr/lib/nagios/plugins/check_http -H {{ acs.hostname }} -e "HTTP/1.1 301" -t 10
       SLAGIOS_check_acs_ssl: /usr/lib/nagios/plugins/check_ssl_cert -H drillpress.hal9k.dk --sni {{ acs.hostname }} --cn {{ acs.hostname }} -t 10
       SLAGIOS_interval_acs_ssl: 1h
@@ -52,16 +52,6 @@
       SLAGIOS_interval_acs_sync: 5m
       SLAGIOS_check_emojiconsan: /usr/lib/nagios/plugins/check_file_age -w 300 -c 400 -f /config/emojiconsan/emojiconsan.stamp
       SLAGIOS_interval_emojiconsan: 5m
-      SLAGIOS_check_cams_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 43200 -c 86400 /config/acsgw/cam-heartbeat
-      SLAGIOS_interval_cams_heartbeat: 5m
-      SLAGIOS_check_acs_barndoor_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/acs-barndoor-heartbeat
-      SLAGIOS_interval_acs_barndoor_heartbeat: 5m
-      SLAGIOS_check_acs_main_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/acs-main-heartbeat
-      SLAGIOS_interval_acs_main_heartbeat: 5m
-      SLAGIOS_check_woodshop_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 360 -c 600 /config/acsgw/bacs-heartbeat
-      SLAGIOS_interval_woodshop_heartbeat: 5m
-      SLAGIOS_check_camctl_heartbeat: /usr/lib/nagios/plugins/check_file_age -w 300 -c 600 /config/acsgw/camctl-heartbeat
-      SLAGIOS_interval_camctl_heartbeat: 5m
       SLAGIOS_check_disk_root: /usr/lib/nagios/plugins/check_disk -w 75 -c 85 -p /
       SLAGIOS_interval_disk_root: 15m
       SLAGIOS_rinterval_disk_root: 15m
