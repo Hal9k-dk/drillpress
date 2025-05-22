@@ -8,7 +8,7 @@
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki
-    image: ghcr.io/linuxserver/dokuwiki
+    image: ghcr.io/linuxserver/dokuwiki:version-2024-02-06b
     volumes:
       - "/srv/dokuwiki/config:/config"
       - "/srv/dokuwiki/logs:/app/www/public/data/log"
