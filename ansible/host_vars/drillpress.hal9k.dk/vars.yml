@@ -1,16 +1,16 @@
 ---
 wordpress:
   db:
-    name: wordpress
-    user: wordpress
+    name: "wordpress"
+    user: "wordpress"
     pass: "{{ vault.wordpress.dbpass }}"
   hostname: "www.hal9k.dk,hal9k.dk"
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acs:
   rootpass: "{{ vault.acs.rootpass }}"
-  dbname: acs
-  dbuser: acs
+  dbname: "acs"
+  dbuser: "acs"
   dbpass: "{{ vault.acs.dbpass }}"
   hostname: "panopticon.hal9k.dk"
   fluser: "{{ vault.acs.fluser }}"
@@ -27,17 +27,17 @@ acsgw:
   camera:
     token: "{{ vault.acsgw.camera.token }}"
     defaults:
-      keepalive: 60
-      pixel_threshold: 10
-      percent_threshold: 2
+      keepalive: "60"
+      pixel_threshold: "10"
+      percent_threshold: "2"
   camctl:
     token: "{{ vault.acsgw.camctl.token }}"
 acme:
   email: "{{ vault.acme.email }}"
 dokuwiki:
-  hostname: wiki.hal9k.dk
+  hostname: "wiki.hal9k.dk"
 qrredirect:
-  hostname: qr.hal9k.dk
+  hostname: "qr.hal9k.dk"
 ssh:
   users:
     - bullestock
@@ -48,7 +48,7 @@ watchtower:
   slack_hook_url: "{{ vault.watchtower.slack_hook_url }}"
 backblaze:
   keyID: "{{ vault.backblaze.keyID }}"
-  keyName: drillpress
+  keyName: "drillpress"
   applicationKey: "{{ vault.backblaze.applicationKey }}"
 restic:
   repopass: "{{ vault.restic.repopass }}"
@@ -56,11 +56,11 @@ slagios:
   webhook: "{{ vault.slagios.webhook }}"
   signing_key: "{{ vault.slagios.signing_key }}"
 minio:
-  username: hal9k
+  username: "hal9k"
   password: "{{ vault.minio.password }}"
-  hostname: minio.hal9k.dk
+  hostname: "minio.hal9k.dk"
 emojiconsan:
   token: "{{ vault.emojiconsan.token }}"
   hook: "{{ vault.emojiconsan.hook }}"
 mosquitto:
-  hostname: mqtt.hal9k.dk
+  hostname: "mqtt.hal9k.dk"
