@@ -56,3 +56,6 @@ restic -q -v backup \
 
 ##
 echo 'Backup done'
+restic -q -v forget \
+  --keep-last 5 \
+  --prune
