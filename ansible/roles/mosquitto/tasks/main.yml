@@ -32,4 +32,4 @@
   docker_container:
     name: mosquitto
     restart: yes
-  when: mosquitto_conf
+  when: mosquitto_conf.changed
