@@ -37,3 +37,10 @@
       MYSQL_USER: acs
       MYSQL_PASSWORD: "{{ acs.dbpass }}"
 
+- name: ACS MQTT logger
+  community.general.docker_container:
+    name: acsmqttlogger
+    image: bullestock/acs-mqtt-logger
+    volumes:
+      - "/srv/acs/logs:/opt/service/logs"
+    restart_policy: always
