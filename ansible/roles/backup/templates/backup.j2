@@ -47,7 +47,7 @@ fi
 
 ##
 echo 'Backing up dokuwiki, wordpress, and ACS'
-restic -q -v backup \
+restic -v backup \
   --exclude /srv/wordpress/mysql/ \
   --exclude /srv/acs/mysql/ \
   /srv/dokuwiki \
@@ -56,6 +56,6 @@ restic -q -v backup \
 
 ##
 echo 'Backup done'
-restic -q -v forget \
+restic -v forget \
   --keep-last 5 \
   --prune
