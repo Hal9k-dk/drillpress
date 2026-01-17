@@ -23,6 +23,7 @@
       - '[::]:8883:8883/tcp'
     volumes:
       - "/srv/mosquitto/config:/mosquitto/config"
+      - "/srv/mosquitto/db:/mosquitto/db"
       - "/srv/nginx-proxy/certs/mqtt.hal9k.dk:/mosquitto/certs"
     env:
       VIRTUAL_HOST: "{{ mosquitto.hostname }}"
