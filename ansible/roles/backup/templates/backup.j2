@@ -23,7 +23,7 @@ dbdump="/srv/acs/db-dumps/$(date -u -Is)"
 mkdir -p "$(dirname "$dbdump")"
 echo Dumping acs-db to: "$dbdump"
 docker container \
-  exec acs-db mysqldump -A > "$dbdump"
+  exec acs-db-8 mysqldump -A > "$dbdump"
 
 ##
 echo "Compressing $dbdump"
