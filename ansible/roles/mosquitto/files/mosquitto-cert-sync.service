@@ -1,0 +1,8 @@
+[Unit]
+Description=Synchronize Mosquitto TLS certificates from nginx-proxy cert store
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/sync-mosquitto-certs
