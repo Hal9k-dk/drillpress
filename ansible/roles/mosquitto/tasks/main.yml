@@ -3,11 +3,74 @@
     src: mqtt
     dest: /srv/nginx-proxy/vhost.d/mqtt.hal9k.dk
 
+- name: Create Mosquitto directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - path: /srv/mosquitto
+      mode: '0755'
+    - path: /srv/mosquitto/config
+      mode: '0755'
+    - path: /srv/mosquitto/db
+      mode: '0755'
+    - path: /srv/mosquitto/certs
+      owner: '1883'
+      group: '1883'
+      mode: '0750'
+
 - name: Mosquitto configuration
   ansible.builtin.copy:
     src: config/
     dest: /srv/mosquitto/config/
   register: mosquitto_conf
+
+- name: Tighten Mosquitto ACL file permissions
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: '0700'
+  loop:
+    - /srv/mosquitto/config/acl_file
+    - /srv/mosquitto/config/acl_file_secure
+
+- name: Install Mosquitto certificate sync script
+  ansible.builtin.template:
+    src: sync-mosquitto-certs.j2
+    dest: /usr/local/sbin/sync-mosquitto-certs
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: Install Mosquitto certificate sync service
+  ansible.builtin.copy:
+    src: mosquitto-cert-sync.service
+    dest: /etc/systemd/system/mosquitto-cert-sync.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Mosquitto certificate sync path unit
+  ansible.builtin.template:
+    src: mosquitto-cert-sync.path.j2
+    dest: /etc/systemd/system/mosquitto-cert-sync.path
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable Mosquitto certificate sync watcher
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: mosquitto-cert-sync.path
+    enabled: 'yes'
+    state: started
+
+- name: Run initial Mosquitto certificate sync
+  ansible.builtin.command: /usr/local/sbin/sync-mosquitto-certs
+  register: mosquitto_cert_sync
+  changed_when: "'changed' in mosquitto_cert_sync.stdout"
 
 - name: Mosquitto
   community.general.docker_container:
@@ -24,7 +87,7 @@
     volumes:
       - "/srv/mosquitto/config:/mosquitto/config"
       - "/srv/mosquitto/db:/mosquitto/db"
-      - "/srv/nginx-proxy/certs/mqtt.hal9k.dk:/mosquitto/certs"
+      - "/srv/mosquitto/certs:/mosquitto/certs:ro"
     env:
       VIRTUAL_HOST: "{{ mosquitto.hostname }}"
       LETSENCRYPT_HOST: "{{ mosquitto.hostname }}"

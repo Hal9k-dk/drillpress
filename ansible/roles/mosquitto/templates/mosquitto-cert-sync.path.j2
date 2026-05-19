@@ -1,0 +1,10 @@
+[Unit]
+Description=Watch nginx-proxy certificate files for Mosquitto
+
+[Path]
+PathChanged=/srv/nginx-proxy/certs/{{ mosquitto.hostname }}/fullchain.pem
+PathChanged=/srv/nginx-proxy/certs/{{ mosquitto.hostname }}/key.pem
+Unit=mosquitto-cert-sync.service
+
+[Install]
+WantedBy=multi-user.target

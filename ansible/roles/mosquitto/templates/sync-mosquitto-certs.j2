@@ -1,0 +1,46 @@
+#!/bin/sh
+set -eu
+
+SRC_DIR="/srv/nginx-proxy/certs/{{ mosquitto.hostname }}"
+DST_DIR="/srv/mosquitto/certs"
+TMP_FULLCHAIN="$DST_DIR/fullchain.pem.tmp"
+TMP_KEY="$DST_DIR/key.pem.tmp"
+TARGET_FULLCHAIN="$DST_DIR/fullchain.pem"
+TARGET_KEY="$DST_DIR/key.pem"
+CHANGED=0
+
+fail() {
+  echo "$1" >&2
+  exit 1
+}
+
+[ -s "$SRC_DIR/fullchain.pem" ] || fail "Missing source certificate: $SRC_DIR/fullchain.pem"
+[ -s "$SRC_DIR/key.pem" ] || fail "Missing source key: $SRC_DIR/key.pem"
+
+install -d -o 1883 -g 1883 -m 0750 "$DST_DIR"
+install -o 1883 -g 1883 -m 0640 "$SRC_DIR/fullchain.pem" "$TMP_FULLCHAIN"
+install -o 1883 -g 1883 -m 0640 "$SRC_DIR/key.pem" "$TMP_KEY"
+
+if [ ! -f "$TARGET_FULLCHAIN" ] || ! cmp -s "$TMP_FULLCHAIN" "$TARGET_FULLCHAIN"; then
+  mv "$TMP_FULLCHAIN" "$TARGET_FULLCHAIN"
+  CHANGED=1
+else
+  rm -f "$TMP_FULLCHAIN"
+fi
+
+if [ ! -f "$TARGET_KEY" ] || ! cmp -s "$TMP_KEY" "$TARGET_KEY"; then
+  mv "$TMP_KEY" "$TARGET_KEY"
+  CHANGED=1
+else
+  rm -f "$TMP_KEY"
+fi
+
+if [ "$CHANGED" -eq 1 ] && docker inspect mosquitto >/dev/null 2>&1; then
+  docker restart mosquitto
+fi
+
+if [ "$CHANGED" -eq 1 ]; then
+  echo changed
+else
+  echo unchanged
+fi
