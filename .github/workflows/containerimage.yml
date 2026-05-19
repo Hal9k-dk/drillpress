@@ -19,11 +19,12 @@ jobs:
 
       - name: Play Ansible Playbook
         uses: arillso/action.playbook@0.5.0
+        env:
+          ANSIBLE_CONFIG_FILE: ansible/ansible.cfg
         with:
           playbook: ansible/site.yml
           inventory: ansible/hosts
           galaxy_file: ansible/requirements.yml
-          config_file: ansible/ansible.cfg
           ssh_common_args: "\"-oUserKnownHostsFile=known_hosts\""
           private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
