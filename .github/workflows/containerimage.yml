@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Play Ansible Playbook
-        uses: arillso/action.playbook@0.0.4
+        uses: arillso/action.playbook@0.5.0
         with:
           playbook: ansible/site.yml
           inventory: ansible/hosts
