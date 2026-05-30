@@ -1,0 +1,13 @@
+/config/log/php/*.log {
+	size 100M
+	rotate 5
+	compress
+	nodateext
+	notifempty
+	missingok
+	sharedscripts
+	postrotate
+		s6-svc -t /run/service/svc-php-fpm
+	endscript
+	su abc abc
+}

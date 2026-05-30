@@ -5,6 +5,16 @@
     src: dokuwiki
     dest: /srv/nginx-proxy/vhost.d/wiki.hal9k.dk
 
+- name: Copy custom logrotate config for nginx
+  ansible.builtin.copy:
+    src: logrotate-nginx
+    dest: /srv/dokuwiki/logrotate-nginx
+
+- name: Copy custom logrotate config for php-fpm
+  ansible.builtin.copy:
+    src: logrotate-phpfpm
+    dest: /srv/dokuwiki/logrotate-phpfpm
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki
@@ -12,6 +22,8 @@
     volumes:
       - "/srv/dokuwiki/config:/config"
       - "/srv/dokuwiki/logs:/app/www/public/data/log"
+      - "/srv/dokuwiki/logrotate-nginx:/etc/logrotate.d/nginx"
+      - "/srv/dokuwiki/logrotate-phpfpm:/etc/logrotate.d/php-fpm"
     restart_policy: always
     expose: 80
     networks:

@@ -1,0 +1,13 @@
+/config/log/nginx/*.log {
+	size 100M
+	rotate 5
+	compress
+	nodateext
+	notifempty
+	missingok
+	sharedscripts
+	postrotate
+		s6-svc -1 /run/service/svc-nginx
+	endscript
+	su abc abc
+}
