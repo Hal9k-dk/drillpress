@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status
+exit 0

@@ -15,6 +15,12 @@
     src: logrotate-phpfpm
     dest: /srv/dokuwiki/logrotate-phpfpm
 
+- name: Copy logrotate runner script for 15min cron slot
+  ansible.builtin.copy:
+    src: logrotate-runner
+    dest: /srv/dokuwiki/logrotate-runner
+    mode: '0755'
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki
@@ -24,6 +30,7 @@
       - "/srv/dokuwiki/logs:/app/www/public/data/log"
       - "/srv/dokuwiki/logrotate-nginx:/etc/logrotate.d/nginx"
       - "/srv/dokuwiki/logrotate-phpfpm:/etc/logrotate.d/php-fpm"
+      - "/srv/dokuwiki/logrotate-runner:/etc/periodic/15min/logrotate"
     restart_policy: always
     expose: 80
     networks:
