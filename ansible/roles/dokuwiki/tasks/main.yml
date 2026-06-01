@@ -21,6 +21,11 @@
     dest: /srv/dokuwiki/logrotate-runner
     mode: '0755'
 
+- name: Copy PHP session GC config
+  ansible.builtin.copy:
+    src: php-local.ini
+    dest: /srv/dokuwiki/config/php/php-local.ini
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki

@@ -1,3 +1,8 @@
 #!/bin/sh
+
+# Clean stale PHP sessions older than 2 hours
+find /tmp -name 'sess_*' -mmin +120 -delete 2>/dev/null
+
+# Rotate logs
 /usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status
 exit 0
