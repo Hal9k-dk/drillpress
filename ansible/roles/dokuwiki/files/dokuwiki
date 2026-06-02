@@ -4,8 +4,3 @@ client_max_body_size 0;
 if ($http_user_agent ~* meta-webindexer/1.1) {
     return 418;
 }
-
-# Return 418 for taskrunner (heavily abused by bots)
-location /lib/exe/taskrunner.php {
-    return 418;
-}
