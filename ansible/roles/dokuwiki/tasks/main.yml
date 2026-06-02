@@ -26,6 +26,11 @@
     src: php-local.ini
     dest: /srv/dokuwiki/config/php/php-local.ini
 
+- name: Copy PHP-FPM pool config (increased max_children for bot traffic)
+  ansible.builtin.copy:
+    src: www2.conf
+    dest: /srv/dokuwiki/config/php/www2.conf
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki
