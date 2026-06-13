@@ -18,12 +18,21 @@
       MYSQL_USER: "{{ wordpress.db.user }}"
       MYSQL_PASSWORD: "{{ wordpress.db.pass }}"
 
+- name: Deploy Apache MPM config for hal9k.dk
+  ansible.builtin.copy:
+    src: mpm_prefork_hal9k.conf
+    dest: /srv/wordpress/mpm_prefork_hal9k.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Wordpress
   community.general.docker_container:
     name: wordpress
     image: "wordpress:6-php7.4"
     volumes:
       - "/srv/wordpress/www:/var/www/html"
+      - "/srv/wordpress/mpm_prefork_hal9k.conf:/etc/apache2/mods-enabled/mpm_prefork.conf:ro"
     networks:
       - name: wp_db_net
       - name: nginx_net
@@ -41,12 +50,21 @@
         define( 'WP_HOME', 'https://{{ wordpress.hostname }}' );
         define( 'WP_SITEURL', 'https://{{ wordpress.hostname }}' );
 
+- name: Deploy Apache MPM config for xn--befridinelmler-vib.dk
+  ansible.builtin.copy:
+    src: mpm_prefork_xn.conf
+    dest: /srv/wordpress/mpm_prefork_xn.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: xn--befridinelmler-vib.dk
   community.general.docker_container:
     name: xn--befridinelmler-vib.dk
     image: "wordpress:latest"
     volumes:
       - "/srv/wordpress/xn--befridinelmler-vib.dk:/var/www/html"
+      - "/srv/wordpress/mpm_prefork_xn.conf:/etc/apache2/mods-enabled/mpm_prefork.conf:ro"
     networks:
       - name: wp_db_net
       - name: nginx_net
