@@ -17,7 +17,7 @@ acs:
   flpass: "{{ vault.acs.flpass }}"
 acsgw:
   hostname: "acsgateway.hal9k.dk"
-  slacktoken: "{{ vault.acsgw.slacktoken }}"
+  slacksigningsecret: "{{ vault.acsgw.slacksigningsecret }}"
   slackwritetoken: "{{ vault.acsgw.slackwritetoken }}"
   slackteam: "T04LP1S7R"
   acstoken: "{{ vault.acsgw.acstoken }}"
