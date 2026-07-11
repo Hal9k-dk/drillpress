@@ -16,6 +16,7 @@
       SLACK_SIGNING_SECRET: "{{ acsgw.slacksigningsecret }}"
       SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
+      MQTT_KEY: "{{ acsgw.mqttkey }}"
       ACS_ACTION_USERS: "{{ acsgw.acsactionusers }}"
       CAM_ACTION_USERS: "{{ acsgw.camactionusers }}"
       CAMERA_VERIFICATION_TOKEN: "{{ acsgw.camera.token }}"
