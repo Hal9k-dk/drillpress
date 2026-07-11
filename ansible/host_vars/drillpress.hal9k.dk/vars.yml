@@ -21,6 +21,7 @@ acsgw:
   slackwritetoken: "{{ vault.acsgw.slackwritetoken }}"
   slackteam: "T04LP1S7R"
   acstoken: "{{ vault.acsgw.acstoken }}"
+  mqttkey: "{{ vault.acsgw.mqttkey }}"
   webhook: "{{ vault.acsgw.webhook }}"
   acsactionusers: "{{ vault.acsgw.acsactionusers }}"
   camactionusers: "{{ vault.acsgw.camactionusers }}"
