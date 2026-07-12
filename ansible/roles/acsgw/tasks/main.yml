@@ -17,6 +17,7 @@
       SLACK_TEAM_ID: "{{ acsgw.slackteam }}"
       SLACK_WRITE_TOKEN: "{{ acsgw.slackwritetoken }}"
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
+      ACS_DOOR_TOKEN: "{{ acsgw.acsdoortoken }}"
       MQTT_KEY: "{{ acsgw.mqttkey }}"
       ACS_ACTION_USERS: "{{ acsgw.acsactionusers }}"
       CAM_ACTION_USERS: "{{ acsgw.camactionusers }}"
