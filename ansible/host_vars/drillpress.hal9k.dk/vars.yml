@@ -23,6 +23,8 @@ acsgw:
   acstoken: "{{ vault.acsgw.acstoken }}"
   acsdoortoken: "{{ vault.acsgw.acsdoortoken }}"
   mqttkey: "{{ vault.acsgw.mqttkey }}"
+  mqttuser: "hal9k"
+  mqttpass: "{{ vault.acsgw.mqttpass }}"
   webhook: "{{ vault.acsgw.webhook }}"
   acsactionusers: "{{ vault.acsgw.acsactionusers }}"
   camactionusers: "{{ vault.acsgw.camactionusers }}"

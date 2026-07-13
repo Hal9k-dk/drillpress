@@ -19,6 +19,8 @@
       ACS_VERIFICATION_TOKEN: "{{ acsgw.acstoken }}"
       ACS_DOOR_TOKEN: "{{ acsgw.acsdoortoken }}"
       MQTT_KEY: "{{ acsgw.mqttkey }}"
+      MQTT_USER: "{{ acsgw.mqttuser }}"
+      MQTT_PASSWORD: "{{ acsgw.mqttpass }}"
       ACS_ACTION_USERS: "{{ acsgw.acsactionusers }}"
       CAM_ACTION_USERS: "{{ acsgw.camactionusers }}"
       CAMERA_VERIFICATION_TOKEN: "{{ acsgw.camera.token }}"
