@@ -6,7 +6,7 @@
     networks:
       - name: nginx_net
     volumes:
-      - "/srv/monitoring/acsgw:/opt/service/monitoring"
+      - "/srv/monitoring/acsv3:/opt/service/monitoring"
       - "/srv/acsgw:/opt/service/persistent"
       - "/srv/acs/logs:/opt/service/logs"
     expose: 5000
