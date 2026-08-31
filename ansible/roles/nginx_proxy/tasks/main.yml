@@ -31,4 +31,5 @@
     restart_policy: always
     env:
       DEFAULT_EMAIL: "{{ acme.email }}"
+      NGINX_PROXY_CONTAINER: nginx-proxy
 
