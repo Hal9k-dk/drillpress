@@ -18,6 +18,6 @@
     env:
       WATCHTOWER_LIFECYCLE_HOOKS: 'true'
       WATCHTOWER_CLEANUP: 'true'
-      WATCHTOWER_NOTIFICATION_URL: "slack://hook:{{ watchtower.slack_hook_url | regex_replace('^https://hooks.slack.com/services/', '') }}@webhook"
+      WATCHTOWER_NOTIFICATION_URL: "slack://hook:{{ watchtower.slack_hook_url | regex_replace('^https://hooks.slack.com/services/', '') | regex_replace('/', '-') }}@webhook"
       WATCHTOWER_SCHEDULE: 0 0 */6 * * *
       WATCHTOWER_WARN_ON_HEAD_FAILURE: 'never'
