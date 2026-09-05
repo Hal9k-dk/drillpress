@@ -49,6 +49,8 @@ ssh:
     - jbro
     - larsch
 watchtower:
+  ghcr_username: "jbro"
+  ghcr_token: "{{ vault.watchtower.ghcr_token }}"
   slack_hook_url: "{{ vault.watchtower.slack_hook_url }}"
 backblaze:
   keyID: "{{ vault.backblaze.keyID }}"

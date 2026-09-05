@@ -1,10 +1,19 @@
 ---
+- name: Authenticate Docker to GHCR
+  community.docker.docker_login:
+    registry_url: ghcr.io
+    username: "{{ watchtower.ghcr_username }}"
+    password: "{{ watchtower.ghcr_token }}"
+    config_path: /root/.docker/config.json
+  no_log: true
+
 - name: Watchtower
   community.general.docker_container:
     name: watchtower
     image: nickfedor/watchtower
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/root/.docker/config.json:/config.json:ro"
     restart_policy: always
     env:
       WATCHTOWER_LIFECYCLE_HOOKS: 'true'
