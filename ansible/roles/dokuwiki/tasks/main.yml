@@ -31,6 +31,12 @@
     src: www2.conf
     dest: /srv/dokuwiki/config/php/www2.conf
 
+- name: Configure DokuWiki HTTPS detection and OAuth/Slack redirect URI
+  ansible.builtin.template:
+    src: local.protected.php.j2
+    dest: /srv/dokuwiki/config/dokuwiki/conf/local.protected.php
+    mode: '0644'
+
 - name: Dokuwiki
   community.general.docker_container:
     name: dokuwiki

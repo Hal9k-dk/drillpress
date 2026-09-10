@@ -1,0 +1,25 @@
+<?php
+/**
+ * DokuWiki protected local configuration.
+ *
+ * Managed by ansible (roles/dokuwiki). DokuWiki loads this file after
+ * conf/local.php, and the config manager never rewrites it.
+ */
+
+/*
+ * TLS is terminated by the nginx-proxy container in front of DokuWiki, so
+ * requests reach DokuWiki as plain HTTP carrying X-Forwarded-Proto: https.
+ * Since DokuWiki 2025-05-14 that header is only honoured for IPs listed in
+ * $conf['trustedproxies'] (the old singular $conf['trustedproxy'] regex is
+ * ignored). DokuWiki's own conf/dokuwiki.php on this host is still the stale
+ * 2020 default that only defines the old key, so without this setting
+ * DokuWiki believes it is served over HTTP and generates http:// URLs.
+ */
+$conf['trustedproxies'] = ['127.0.0.0/8', '::1', '172.16.0.0/12'];
+
+/*
+ * The oauth plugin builds its redirect_uri from DOKU_URL. Slack requires that
+ * URI to use HTTPS and otherwise aborts the sign-in without telling the user
+ * anything, so pin it explicitly as well.
+ */
+$conf['plugin']['oauth']['custom-redirectURI'] = 'https://{{ dokuwiki.hostname }}/doku.php';
