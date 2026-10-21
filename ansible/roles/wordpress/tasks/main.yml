@@ -1,4 +1,21 @@
 ---
+- name: Keep Aluleth theme archive available for container recovery
+  ansible.builtin.copy:
+    src: aluleth.1.0.2.zip
+    dest: /srv/wordpress/aluleth.1.0.2.zip
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure Aluleth theme exists in persistent WordPress data
+  ansible.builtin.command:
+    argv:
+      - python3
+      - -c
+      - "import pathlib, zipfile; z=zipfile.ZipFile('/srv/wordpress/aluleth.1.0.2.zip'); names=z.namelist(); assert all(not n.startswith('/') and '..' not in n.split('/') for n in names); z.extractall('/srv/wordpress/www/wp-content/themes'); p=pathlib.Path('/srv/wordpress/www/wp-content/themes/aluleth'); assert p.is_dir()"
+  args:
+    creates: /srv/wordpress/www/wp-content/themes/aluleth/style.css
+
 - name: Wordpress database network
   community.docker.docker_network:
     name: wp_db_net
@@ -29,7 +46,7 @@
 - name: Wordpress
   community.general.docker_container:
     name: wordpress
-    image: "wordpress:6-php7.4"
+    image: "wordpress:latest"
     volumes:
       - "/srv/wordpress/www:/var/www/html"
       - "/srv/wordpress/mpm_prefork_hal9k.conf:/etc/apache2/mods-enabled/mpm_prefork.conf:ro"
