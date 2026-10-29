@@ -75,3 +75,6 @@ hugo:
   branch: main
   deploy_authorized_keys: >-
     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUiBI+alPzOzrCxmhHopGygrMh48jmbvTwbc+TdZfGa ci
+signup:
+  hostname: "signup.hal9k.dk"
+  slack_webhook: "{{ vault.signup.slack_webhook }}"

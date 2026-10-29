@@ -51,6 +51,12 @@
   roles:
     - hugo
 
+- name: Setup signup service
+  hosts: drillpress.hal9k.dk
+  tags: signup
+  roles:
+    - signup
+
 - name: Setup Dokuwiki
   hosts: drillpress.hal9k.dk
   tags: dokuwiki
