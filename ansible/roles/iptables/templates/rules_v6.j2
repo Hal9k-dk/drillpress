@@ -67,6 +67,7 @@ COMMIT
 -A DOCKER-USER -i eth0 -m conntrack --ctstate RELATED,ESTABLISHED -j RETURN
 -A DOCKER-USER -i eth0 -p tcp -m tcp -m conntrack --ctorigdstport 80 --ctdir ORIGINAL -j RETURN
 -A DOCKER-USER -i eth0 -p tcp -m tcp -m conntrack --ctorigdstport 443 --ctdir ORIGINAL -j RETURN
+-A DOCKER-USER -i eth0 -p tcp -m tcp -m conntrack --ctorigdstport 2222 --ctdir ORIGINAL -j RETURN
 -A DOCKER-USER -i eth0 -p tcp -m tcp -m conntrack --ctorigdstport 1883 --ctdir ORIGINAL -j RETURN
 -A DOCKER-USER -i eth0 -p tcp -m tcp -m conntrack --ctorigdstport 8883 --ctdir ORIGINAL -j RETURN
 -A DOCKER-USER -i eth0 -j DROP

@@ -45,6 +45,12 @@
   roles:
     - wordpress
 
+- name: Setup Hugo site
+  hosts: drillpress.hal9k.dk
+  tags: hugo
+  roles:
+    - hugo
+
 - name: Setup Dokuwiki
   hosts: drillpress.hal9k.dk
   tags: dokuwiki

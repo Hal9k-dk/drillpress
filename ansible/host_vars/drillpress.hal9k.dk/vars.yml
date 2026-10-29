@@ -68,3 +68,10 @@ emojiconsan:
   hook: "{{ vault.emojiconsan.hook }}"
 mosquitto:
   hostname: "mqtt.hal9k.dk"
+hugo:
+  hostname: "new.hal9k.dk"
+  baseurl: "https://new.hal9k.dk/"
+  repo_url: "https://github.com/hal9k-dk/hal9k-hugo.git"
+  branch: main
+  deploy_authorized_keys: >-
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUiBI+alPzOzrCxmhHopGygrMh48jmbvTwbc+TdZfGa ci

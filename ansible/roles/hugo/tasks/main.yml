@@ -1,0 +1,51 @@
+---
+- name: Install Git for source checkout
+  ansible.builtin.apt:
+    name: git
+    state: present
+    update_cache: true
+
+- name: Ensure Hugo deployment directory exists
+  ansible.builtin.file:
+    path: /srv/hugo-container
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Checkout pinned Hugo container source
+  ansible.builtin.git:
+    repo: https://github.com/Hal9k-dk/hugo-container.git
+    dest: /srv/hugo-container/source
+    version: a4b6f573a9ec4c02cd3b33192cbc371edd7fe766
+
+- name: Build Hugo container image
+  community.docker.docker_image:
+    name: hal9k/hugo-container
+    tag: a4b6f573a9ec4c02cd3b33192cbc371edd7fe766
+    source: build
+    build:
+      path: /srv/hugo-container/source
+
+- name: Hugo site and deploy SSH
+  community.general.docker_container:
+    name: hugo
+    image: hal9k/hugo-container:a4b6f573a9ec4c02cd3b33192cbc371edd7fe766
+    volumes:
+      - /srv/hugo-container/data:/data
+    networks:
+      - name: nginx_net
+    restart_policy: unless-stopped
+    ports:
+      - '2222:2222'
+    expose: 80
+    env:
+      REPO_URL: "{{ hugo.repo_url }}"
+      BRANCH: "{{ hugo.branch }}"
+      HUGO_BASEURL: "{{ hugo.baseurl }}"
+      DEPLOY_AUTHORIZED_KEYS: "{{ hugo.deploy_authorized_keys }}"
+      VIRTUAL_HOST: "{{ hugo.hostname }}"
+      VIRTUAL_PORT: '80'
+      LETSENCRYPT_HOST: "{{ hugo.hostname }}"
+    labels:
+      com.centurylinklabs.watchtower.enable: 'false'
