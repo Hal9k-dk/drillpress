@@ -4,7 +4,6 @@ wordpress:
     name: "wordpress"
     user: "wordpress"
     pass: "{{ vault.wordpress.dbpass }}"
-  hostname: "www.hal9k.dk,hal9k.dk"
 mysql:
   rootpass: "{{ vault.mysql.rootpass }}"
 acs:
@@ -69,8 +68,8 @@ emojiconsan:
 mosquitto:
   hostname: "mqtt.hal9k.dk"
 hugo:
-  hostname: "new.hal9k.dk"
-  baseurl: "https://new.hal9k.dk/"
+  hostname: "www.hal9k.dk,hal9k.dk"
+  baseurl: "https://www.hal9k.dk/"
   repo_url: "https://github.com/hal9k-dk/hal9k-hugo.git"
   branch: main
   deploy_authorized_keys: >-

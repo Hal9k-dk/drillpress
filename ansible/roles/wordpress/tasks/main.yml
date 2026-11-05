@@ -43,29 +43,10 @@
     group: root
     mode: 0644
 
-- name: Wordpress
+- name: Remove the old Hal9k WordPress container
   community.general.docker_container:
     name: wordpress
-    image: "wordpress:latest"
-    volumes:
-      - "/srv/wordpress/www:/var/www/html"
-      - "/srv/wordpress/mpm_prefork_hal9k.conf:/etc/apache2/mods-enabled/mpm_prefork.conf:ro"
-    networks:
-      - name: wp_db_net
-      - name: nginx_net
-    restart_policy: always
-    expose: 80
-    env:
-      VIRTUAL_HOST: "{{ wordpress.hostname }}"
-      LETSENCRYPT_HOST: "{{ wordpress.hostname }}"
-      WORDPRESS_DB_HOST: "wordpress-db:3306"
-      WORDPRESS_DB_USER: "{{ wordpress.db.user }}"
-      WORDPRESS_DB_PASSWORD: "{{ wordpress.db.pass }}"
-      WORDPRESS_DB_NAME: "{{ wordpress.db.name }}"
-      WORDPRESS_TABLE_PREFIX: hal9k_dk_wp_
-      WORDPRESS_CONFIG_EXTRA: |
-        define( 'WP_HOME', 'https://{{ wordpress.hostname }}' );
-        define( 'WP_SITEURL', 'https://{{ wordpress.hostname }}' );
+    state: absent
 
 - name: Deploy Apache MPM config for xn--befridinelmler-vib.dk
   ansible.builtin.copy:
